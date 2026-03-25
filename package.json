@@ -1,0 +1,51 @@
+{
+  "name": "@vu/design-system",
+  "private": false,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "VU-branded React component library and design tokens",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./theme.css": "./dist/styles/theme.css",
+    "./tailwind.preset": "./tailwind.preset.js"
+  },
+  "files": [
+    "dist",
+    "tailwind.preset.js",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:lib": "tsc -p tsconfig.lib.json && npm run copy:assets",
+    "copy:assets": "cp -r src/styles/theme.css dist/styles/ 2>/dev/null || mkdir -p dist/styles && cp src/styles/theme.css dist/styles/",
+    "prepare": "npm run build:lib",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.344.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "playwright": "^1.58.2",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3",
+    "vite": "^5.1.4"
+  }
+}

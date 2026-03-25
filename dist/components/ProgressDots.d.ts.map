@@ -1,0 +1,1 @@
+{"version":3,"file":"ProgressDots.d.ts","sourceRoot":"","sources":["../../src/components/ProgressDots.tsx"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,cAAc,EAAE,MAAM,OAAO,CAAC;AAG5C,KAAK,iBAAiB,GAAG,cAAc,CAAC,cAAc,CAAC,GAAG;IACxD,KAAK,EAAE,MAAM,CAAC;IACd,OAAO,EAAE,MAAM,CAAC;CACjB,CAAC;AAEF,wBAAgB,YAAY,CAAC,EAAE,SAAS,EAAE,KAAK,EAAE,OAAO,EAAE,GAAG,KAAK,EAAE,EAAE,iBAAiB,2CActF"}

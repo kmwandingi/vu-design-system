@@ -1,0 +1,22 @@
+import type { HTMLAttributes } from 'react';
+import { cn } from '@/lib/utils';
+import { progressStyles, type ProgressStyles } from '@/styles/components';
+
+type ProgressProps = HTMLAttributes<HTMLDivElement> &
+  ProgressStyles & {
+    value?: number;
+    indicatorClassName?: string;
+  };
+
+export function Progress({ className, indicatorClassName, variant, size, value = 0, ...props }: ProgressProps) {
+  const clampedValue = Math.min(100, Math.max(0, value));
+
+  return (
+    <div className={cn(progressStyles({ variant, size }), className)} {...props}>
+      <div
+        className={cn('h-full w-full origin-left rounded-full transition-transform duration-300 ease-out', indicatorClassName)}
+        style={{ transform: `scaleX(${clampedValue / 100})` }}
+      />
+    </div>
+  );
+}
