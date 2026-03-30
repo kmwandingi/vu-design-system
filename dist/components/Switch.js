@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { forwardRef, useState, useCallback } from 'react';
-import { cn } from '../lib/utils';
+import { cn } from '../lib/utils.js';
 export const Switch = forwardRef(function Switch({ checked: controlledChecked, defaultChecked = false, onCheckedChange, disabled, name, required, value = 'on', className, ...props }, ref) {
     const [internalChecked, setInternalChecked] = useState(defaultChecked);
     const isControlled = controlledChecked !== undefined;

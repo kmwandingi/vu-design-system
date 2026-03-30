@@ -6,7 +6,7 @@
  * and should be used with the `cn()` utility for conditional classes.
  *
  * @example
- * import { buttonVariants, cardStyles, inputStyles } from './components';
+ * import { buttonVariants, cardStyles, inputStyles } from './components.js';
  * <button className={cn(buttonVariants({ variant: 'primary', size: 'md' }))} />
  */
 import { cva } from 'class-variance-authority';

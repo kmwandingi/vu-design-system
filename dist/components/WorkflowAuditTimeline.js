@@ -1,5 +1,5 @@
 import { jsx as _jsx } from "react/jsx-runtime";
-import { Timeline } from '../components/Timeline';
+import { Timeline } from '../components/Timeline.js';
 export function WorkflowAuditTimeline({ items, ...props }) {
     return _jsx(Timeline, { items: items, ...props });
 }

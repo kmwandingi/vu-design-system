@@ -23,7 +23,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:lib": "tsc -p tsconfig.lib.json && tsc-alias -p tsconfig.lib.json && npm run copy:assets",
+    "build:lib": "tsc -p tsconfig.lib.json && tsc-alias -p tsconfig.lib.json && npm run copy:assets && node scripts/fix-extensions.cjs",
     "copy:assets": "cp -r src/styles/theme.css dist/styles/ 2>/dev/null || mkdir -p dist/styles && cp src/styles/theme.css dist/styles/",
     "prepare": "npm run build:lib",
     "preview": "vite preview"

@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import { cn } from '../lib/utils';
-import { Dialog, DialogOverlay } from '../components/Dialog';
+import { cn } from '../lib/utils.js';
+import { Dialog, DialogOverlay } from '../components/Dialog.js';
 export function Sheet({ open, onOpenChange, children }) {
     return _jsx(Dialog, { open: open, onOpenChange: onOpenChange, children: children });
 }

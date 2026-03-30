@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useRef, useState, useCallback, createContext, useContext } from 'react';
 import { ChevronRight, MoreHorizontal, Check, Circle } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { cn } from '../lib/utils.js';
 const DropdownMenuContext = createContext(null);
 function useDropdownMenuContext() {
     const context = useContext(DropdownMenuContext);

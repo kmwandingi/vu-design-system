@@ -2,8 +2,8 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import { useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
-import { cn } from '../lib/utils';
-import { useFocusTrap, useScrollLock } from '../hooks/useDialog';
+import { cn } from '../lib/utils.js';
+import { useFocusTrap, useScrollLock } from '../hooks/useDialog.js';
 export function Dialog({ open, onOpenChange, children }) {
     const containerRef = useRef(null);
     useFocusTrap(open, containerRef);

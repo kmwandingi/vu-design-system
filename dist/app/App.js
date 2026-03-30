@@ -1,10 +1,10 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from 'react';
-import { cn } from '../lib/utils';
-import { buttonVariants } from '../styles/components';
-import { Icons } from '../styles/icons';
-import { CommandPalette, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogTitle, KeyValueList, Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '../index';
-import { ShowcaseContent } from '../app/ShowcaseContent';
+import { cn } from '../lib/utils.js';
+import { buttonVariants } from '../styles/components.js';
+import { Icons } from '../styles/icons.js';
+import { CommandPalette, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogTitle, KeyValueList, Sheet, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle } from '../index.js';
+import { ShowcaseContent } from '../app/ShowcaseContent.js';
 export default function DesignSystemShowcase() {
     const [darkMode, setDarkMode] = useState(false);
     const [dialogOpen, setDialogOpen] = useState(false);
