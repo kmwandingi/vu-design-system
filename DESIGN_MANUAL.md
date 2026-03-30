@@ -194,11 +194,13 @@ The standard application structure (as seen in SharePoint Duplicate Detection):
   
   {/* Checkbox pattern */}
   <div className="flex items-start gap-3">
-    <input type="checkbox" id="dry-run" className="mt-1" />
-    <label htmlFor="dry-run" className="text-sm">
+    <Checkbox checked={dryRun} onCheckedChange={setDryRun}>
+      <CheckboxIndicator />
+    </Checkbox>
+    <CheckboxLabel>
       <span className="font-medium text-foreground">Dry run (preview only)</span>
       <p className="text-muted-foreground">Tag files without modifying SharePoint</p>
-    </label>
+    </CheckboxLabel>
   </div>
 </form>
 ```

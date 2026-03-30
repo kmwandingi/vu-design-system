@@ -47,6 +47,27 @@ Only primary brand colors are suitable as background colors for white text accor
 - Usage: Confirm actions, eco-friendly contexts
 - Classes: `variant="tertiary"`
 
+### Form Primitives
+
+**Checkbox**
+- States: checked, unchecked, indeterminate
+- Use for: Binary choices, multiple selections
+- Accessibility: ARIA checkbox role, keyboard support
+
+**RadioGroup**
+- Use for: Single selection from mutually exclusive options
+- Pattern: RadioGroup wraps Radio items with RadioIndicator and RadioLabel
+- Accessibility: ARIA radiogroup role, arrow key navigation
+
+**Switch**
+- Use for: Immediate on/off toggles
+- Accessibility: ARIA switch role, keyboard toggle with Space
+
+**Select (Dropdown)**
+- Use for: Single selection from many options
+- Pattern: SelectTrigger, SelectValue, SelectContent, SelectItem
+- Accessibility: ARIA listbox, keyboard navigation (arrows, enter, escape)
+
 ### Size Variants
 - `size="xs"` - 1.5rem height, for compact spaces
 - `size="sm"` - 2rem height, for dense UIs

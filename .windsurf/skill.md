@@ -124,13 +124,20 @@ The VU aesthetic is **academic clarity** — information-dense yet breathable, p
 
 ## Installation & Usage
 
+### Install from GitHub
+
 ```bash
-# Install in any project
+npm install github:kmwandingi/vu-design-system
+```
+
+### Local development
+
+```bash
 npm install /Users/k.n.m.mwandingivu.nl/Documents/Projects/vu-design-system
+```
 
 # Required peer dependencies
 npm install react react-dom tailwindcss lucide-react class-variance-authority clsx tailwind-merge
-```
 
 ```ts
 // Import components
@@ -153,28 +160,32 @@ import vuPreset from '@vu/design-system/tailwind.preset';
 - **Utilities:** `cn()` for class merging
 
 ### 2. Interface Components
-**Files:** `src/components/Button.tsx`, `Badge.tsx`, `Card.tsx`, `Alert.tsx`, `Input.tsx`
+**Files:** `src/components/Button.tsx`, `Badge.tsx`, `Card.tsx`, `Alert.tsx`, `Input.tsx`, `Checkbox.tsx`, `RadioGroup.tsx`, `Switch.tsx`
 
-| Component | Variants | Key Props |
-|-----------|----------|-----------|
-| `Button` | primary, secondary, accent, tertiary, outline, ghost, subtle | `variant`, `size`, `disabled` |
-| `Badge` | primary, secondary, accent, success, warning, error, info, outline | `variant` |
-| `Card` | default, elevated, interactive | `padding`, `variant` |
-| `Alert` | semantic styling via className | `variant` (manual) |
-| `Input` | standard, valid, error states | - |
+| Component | Variants | Key Props | Accessibility |
+|-----------|----------|-----------|---------------|
+| `Button` | primary, secondary, accent, tertiary, outline, ghost, subtle | `variant`, `size`, `disabled`, `href`, `asChild` | Focus ring, keyboard |
+| `Badge` | primary, secondary, accent, success, warning, error, info, outline | `variant` | - |
+| `Card` | default, elevated, interactive | `padding`, `variant` | - |
+| `Alert` | semantic styling via className | `variant` (manual) | ARIA roles |
+| `Input` | standard, valid, error states | - | Focus ring |
+| `Checkbox` | checked, unchecked, indeterminate | `checked`, `onCheckedChange`, `disabled` | ARIA checkbox |
+| `RadioGroup` | controlled/uncontrolled | `value`, `onValueChange`, `name` | ARIA radiogroup |
+| `Switch` | on/off toggle | `checked`, `onCheckedChange`, `disabled` | ARIA switch |
 
 ### 3. Navigation & Workflow
-**Files:** `Tabs.tsx`, `Dialog.tsx`, `Sheet.tsx`, `DropdownMenu.tsx`, `Stepper.tsx`, `Timeline.tsx`, `EmptyState.tsx`
+**Files:** `Tabs.tsx`, `Dialog.tsx`, `Sheet.tsx`, `DropdownMenu.tsx`, `Stepper.tsx`, `Timeline.tsx`, `EmptyState.tsx`, `Select.tsx`
 
-| Component | Purpose | Pattern |
-|-----------|---------|---------|
-| `Tabs` | Sub-view navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` |
-| `Dialog` / `Modal` | Focused decisions | Full overlay pattern with header/footer |
-| `Sheet` / `Drawer` | Secondary workflows | Side drawer with overlay |
-| `DropdownMenu` | Action menus | Content, Item, Label, Separator |
-| `Stepper` | Multi-step flows | Horizontal progress with complete/current/upcoming |
-| `Timeline` | Process narrative | Vertical step visualization |
-| `EmptyState` | Zero-content handling | Icon + description + actions |
+| Component | Purpose | Pattern | Accessibility |
+|-----------|---------|---------|---------------|
+| `Tabs` | Sub-view navigation | `Tabs`, `TabsList`, `TabsTrigger`, `TabsContent` | ARIA tabs |
+| `Dialog` / `Modal` | Focused decisions | Full overlay with focus trap, scroll lock, escape close | ARIA dialog, focus trap |
+| `Sheet` / `Drawer` | Secondary workflows | Side drawer with overlay | ARIA dialog |
+| `DropdownMenu` | Action menus | `Trigger`, `Content`, `Item`, `Label`, `Separator`, checkbox/radio items | ARIA menu, keyboard nav |
+| `Select` | Single-choice dropdown | `Select`, `Trigger`, `Value`, `Content`, `Item`, `Group`, `Label` | ARIA listbox, keyboard nav |
+| `Stepper` | Multi-step flows | Horizontal progress with complete/current/upcoming | - |
+| `Timeline` | Process narrative | Vertical step visualization | - |
+| `EmptyState` | Zero-content handling | Icon + description + actions | - |
 
 ### 4. Data Display
 **Files:** `StatCard.tsx`, `Table.tsx`, `KeyValueList.tsx`, `FilterBar.tsx`, `SearchInput.tsx`, `Pagination.tsx`, `ResultSummary.tsx`
@@ -182,12 +193,32 @@ import vuPreset from '@vu/design-system/tailwind.preset';
 | Component | Use Case |
 |-----------|----------|
 | `StatCard` | KPIs, metrics with trend |
-| `Table` | Dense structured data |
+| `Table` | Dense structured data with sorting support |
 | `KeyValueList` | Definition-style data |
 | `FilterBar` | Search + filter + actions |
 | `SearchInput` | Embedded search field |
 | `Pagination` | Large dataset navigation |
 | `ResultSummary` | Recommendations, next steps |
+
+### Table Sorting
+
+Use the `useTableSort` hook for client-side sorting:
+
+```tsx
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, useTableSort } from '@vu/design-system';
+
+const data = [{ name: 'A', value: 10 }, { name: 'B', value: 5 }];
+const { data: sortedData, sortColumn, sortDirection, onSort } = useTableSort(data, { initialColumn: 'name', initialDirection: 'asc' });
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead sortable column="name" direction={sortColumn === 'name' ? sortDirection : undefined} onSort={onSort}>Name</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>{/* rows */}</TableBody>
+</Table>
+```
 
 ### 5. AI / Async
 **Files:** `AIState.tsx`, `EvidenceCard.tsx`, `WorkflowAuditTimeline.tsx`, `CommandPalette.tsx`, `DataVisualShell.tsx`, `ActivityFeedItem.tsx`
@@ -214,13 +245,56 @@ Each has a 50-900 scale: `bg-vu-blue-500`, `text-vu-blue-700`, etc.
 
 ## Common Patterns
 
-### Form Composition
-```tsx
-import { FormField } from '@vu/design-system';
+### 5. Form Primitives
 
-<FormField label="Email" description="Your institutional email" required error="Invalid email">
-  <Input type="email" />
-</FormField>
+Accessible form components with built-in ARIA support:
+
+**Checkbox**
+```tsx
+import { Checkbox, CheckboxIndicator, CheckboxLabel } from '@vu/design-system';
+
+<Checkbox checked={checked} onCheckedChange={setChecked}>
+  <CheckboxIndicator />
+  <CheckboxLabel>Accept terms</CheckboxLabel>
+</Checkbox>
+```
+
+**RadioGroup**
+```tsx
+import { RadioGroup, Radio, RadioIndicator, RadioLabel } from '@vu/design-system';
+
+<RadioGroup value={value} onValueChange={setValue}>
+  <Radio value="a">
+    <RadioIndicator />
+    <RadioLabel>Option A</RadioLabel>
+  </Radio>
+  <Radio value="b">
+    <RadioIndicator />
+    <RadioLabel>Option B</RadioLabel>
+  </Radio>
+</RadioGroup>
+```
+
+**Switch**
+```tsx
+import { Switch } from '@vu/design-system';
+
+<Switch checked={on} onCheckedChange={setOn} />
+```
+
+**Select (with keyboard navigation)**
+```tsx
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@vu/design-system';
+
+<Select value={value} onValueChange={setValue}>
+  <SelectTrigger>
+    <SelectValue placeholder="Select option..." />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectItem value="a">Option A</SelectItem>
+    <SelectItem value="b">Option B</SelectItem>
+  </SelectContent>
+</Select>
 ```
 
 ### Loading States
@@ -324,15 +398,19 @@ Then import and use any component. Changes to the design system require `npm run
 import { cn, Icons } from '@vu/design-system';
 import buttonVariants, badgeVariants, cardStyles from '@vu/design-system';
 
-// Components (30+ available)
+// Components (40+ available)
 import {
   Button, Badge, Card, Alert, Input, Textarea,
+  Checkbox, CheckboxIndicator, CheckboxLabel,
+  RadioGroup, Radio, RadioIndicator, RadioLabel,
+  Switch,
+  Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator,
   FormField, EmptyState, PageHeader, SectionHeader,
   Tabs, TabsList, TabsTrigger, TabsContent,
-  Dialog, Modal, Sheet, Drawer, DropdownMenu,
+  Dialog, Modal, Sheet, Drawer, DropdownMenu, DropdownMenuTrigger, DropdownMenuCheckboxItem, DropdownMenuRadioItem,
   Progress, ProgressDots, Stepper, Skeleton, Spinner, Separator, LoadingState, Timeline,
   StatCard, StatusPanel, ResultSummary, ActivityFeedItem,
-  KeyValueList, Table, FilterBar, SearchInput, Pagination,
+  KeyValueList, Table, useTableSort, FilterBar, SearchInput, Pagination,
   AIState, EvidenceCard, WorkflowAuditTimeline, CommandPalette,
   InlineEditable, DataVisualShell,
 } from '@vu/design-system';

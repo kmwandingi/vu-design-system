@@ -26,7 +26,13 @@ npm run build
 
 ## Installation
 
-### Local development (recommended for your own projects)
+### Install from GitHub (public)
+
+```bash
+npm install github:kmwandingi/vu-design-system
+```
+
+### Local development
 
 Install from local path into any project:
 
@@ -96,6 +102,19 @@ import {
   Input,
   Textarea,
   Badge,
+  Checkbox,
+  CheckboxIndicator,
+  CheckboxLabel,
+  RadioGroup,
+  Radio,
+  RadioIndicator,
+  RadioLabel,
+  Switch,
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
   FormField,
   EmptyState,
   PageHeader,
@@ -109,6 +128,9 @@ import {
   Sheet,
   Drawer,
   DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
   Progress,
   ProgressDots,
   Stepper,
@@ -123,6 +145,7 @@ import {
   ActivityFeedItem,
   KeyValueList,
   Table,
+  useTableSort,
   FilterBar,
   SearchInput,
   Pagination,
@@ -170,7 +193,7 @@ The package is organized conceptually around recurring UI situations observed ac
   - tokens, theme variables, icons, spacing, gradients, surfaces, focus, motion
 
 - `Inputs`
-  - `Input`, `Textarea`, `FormField`, inline editing, search, filter composition
+  - `Input`, `Textarea`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `FormField`, inline editing, search, filter composition
 
 - `Feedback`
   - `Alert`, `Badge`, `Progress`, `Spinner`, `Skeleton`, `LoadingState`, `EmptyState`
