@@ -1,7 +1,8 @@
-import { useEffect, type ButtonHTMLAttributes, type HTMLAttributes, type ReactNode } from 'react';
+import { useRef, useEffect, type ButtonHTMLAttributes, type HTMLAttributes, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useFocusTrap, useScrollLock } from '@/hooks/useDialog';
 
 type DialogProps = {
   open: boolean;
@@ -10,6 +11,11 @@ type DialogProps = {
 };
 
 export function Dialog({ open, onOpenChange, children }: DialogProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(open, containerRef);
+  useScrollLock(open);
+
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (event: KeyboardEvent) => {
@@ -19,7 +25,7 @@ export function Dialog({ open, onOpenChange, children }: DialogProps) {
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [open, onOpenChange]);
 
-  return open ? createPortal(<div className="fixed inset-0 z-50">{children}</div>, document.body) : null;
+  return open ? createPortal(<div ref={containerRef} className="fixed inset-0 z-50">{children}</div>, document.body) : null;
 }
 
 export function DialogTrigger({ ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -31,8 +37,16 @@ export function DialogOverlay({ className, ...props }: HTMLAttributes<HTMLDivEle
 }
 
 export function DialogContent({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  // Find the Dialog's onOpenChange from context - we'll use a data attribute approach
+  // or the parent can handle click outside via DialogOverlay
+
   return (
-    <div className={cn('fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border bg-background p-6 shadow-lg', className)} {...props}>
+    <div
+      ref={contentRef}
+      className={cn('fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl border bg-background p-6 shadow-lg', className)}
+      {...props}
+    >
       {children}
     </div>
   );

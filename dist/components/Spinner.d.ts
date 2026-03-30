@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import { type SpinnerStyles } from '@/styles/components';
+import { type SpinnerStyles } from '../styles/components';
 type SpinnerProps = HTMLAttributes<HTMLDivElement> & SpinnerStyles & {
     label?: ReactNode;
 };

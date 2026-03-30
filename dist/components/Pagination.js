@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/styles/components';
+import { cn } from '../lib/utils';
+import { buttonVariants } from '../styles/components';
 export function Pagination({ className, ...props }) {
     return _jsx("nav", { "aria-label": "pagination", className: cn('mx-auto flex w-full justify-center', className), ...props });
 }

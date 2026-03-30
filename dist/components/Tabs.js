@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { createContext, useContext, useMemo, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils';
 const TabsContext = createContext(null);
 function useTabsContext() {
     const context = useContext(TabsContext);

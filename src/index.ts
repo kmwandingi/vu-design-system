@@ -3,6 +3,7 @@ export { Badge } from './components/Badge';
 export { Card } from './components/Card';
 export { Alert } from './components/Alert';
 export { Input, Textarea } from './components/Input';
+export { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator } from './components/Select';
 export { Progress } from './components/Progress';
 export { Skeleton } from './components/Skeleton';
 export { Spinner } from './components/Spinner';
@@ -25,6 +26,10 @@ export {
   DialogDescription,
   DialogClose,
 } from './components/Dialog';
+export { Checkbox, CheckboxIndicator, CheckboxLabel } from './components/Checkbox';
+export { RadioGroup, Radio, RadioIndicator, RadioLabel } from './components/RadioGroup';
+export { Switch } from './components/Switch';
+export { useFocusTrap, useScrollLock, useClickOutside } from './hooks/useDialog';
 export {
   Sheet,
   SheetTrigger,
@@ -36,8 +41,12 @@ export {
 } from './components/Sheet';
 export {
   DropdownMenu,
+  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuShortcut,

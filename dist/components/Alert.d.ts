@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import { type AlertVariants } from '@/styles/components';
+import { type AlertVariants } from '../styles/components';
 type AlertProps = HTMLAttributes<HTMLDivElement> & AlertVariants & {
     icon?: ReactNode;
     title?: ReactNode;

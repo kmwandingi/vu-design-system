@@ -1,9 +1,9 @@
 import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState } from 'react';
 import { Check, Pencil, X } from 'lucide-react';
-import { cn } from '@/lib/utils';
-import { buttonVariants } from '@/styles/components';
-import { Input } from '@/components/Input';
+import { cn } from '../lib/utils';
+import { buttonVariants } from '../styles/components';
+import { Input } from '../components/Input';
 export function InlineEditable({ className, value, onSave, placeholder = 'Enter value', ...props }) {
     const [editing, setEditing] = useState(false);
     const [draft, setDraft] = useState(value);

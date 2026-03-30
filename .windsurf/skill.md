@@ -16,6 +16,112 @@ The VU Design System is organized around **recurring UI situations** observed ac
 4. **Accessibility by default** — WCAG 2.2 AA compliance built-in
 5. **Composability** — Small primitives that compose into complex patterns
 
+## Design Philosophy (CRITICAL)
+
+The VU aesthetic is **academic clarity** — information-dense yet breathable, professional without being corporate, colorful only when communicating meaning.
+
+### The Five Rules
+
+1. **Restraint over abundance** — Default to grays. Use brand colors ONLY for:
+   - Primary actions (buttons, links)
+   - Status indicators (success, warning, error, info)
+   - Data visualization
+   - Never for decoration or "visual interest"
+
+2. **Generous whitespace** — Cramped interfaces look unprofessional:
+   - Cards: minimum `p-6` (24px)
+   - Sections: `space-y-6` (24px gap)
+   - Tables: row height `h-12` with `py-3`
+   - Page padding: `p-8` (32px)
+
+3. **Single primary action** — Only ONE button gets `variant="primary"` per view:
+   - Primary: The main thing user should do
+   - Secondary: `variant="outline"` or `variant="secondary"`
+   - Tertiary: `variant="ghost"` or icon-only
+
+4. **Subtle status indicators** — Status should be glanceable, not attention-grabbing:
+   - ✅ `<span className="text-vu-blue-600">● Primary</span>`
+   - ❌ `<Badge variant="primary">Primary</Badge>` (too heavy)
+   - Use colored dots + text, not big badges
+
+5. **Clear information hierarchy** — Users scan in F-patterns:
+   - Section headers: `text-sm uppercase tracking-wider text-muted-foreground`
+   - Page titles: `text-xl font-semibold`
+   - Body: `text-sm text-foreground`
+   - Secondary info: `text-sm text-muted-foreground`
+
+### Standard Application Layout
+
+```tsx
+// Two-column layout (sidebar + main)
+<div className="flex h-screen">
+  <aside className="w-[280px] border-r bg-muted/30 p-6 flex flex-col gap-8">
+    {/* Sidebar: Navigation, primary actions, stats */}
+    <div className="space-y-3">
+      <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">
+        Section Label
+      </h3>
+      <Button variant="primary" className="w-full">Primary Action</Button>
+    </div>
+  </aside>
+  
+  <main className="flex-1 p-8 overflow-auto">
+    <PageHeader title="Page Title" description="What this page does" />
+    
+    <Card className="mt-6">
+      {/* Main content */}
+    </Card>
+  </main>
+</div>
+```
+
+### Color Usage Matrix
+
+| Context | Correct | Incorrect |
+|---------|---------|-----------|
+| **Backgrounds** | White, `bg-muted`, `bg-card` | `bg-vu-blue-100`, `bg-vu-orange-50` |
+| **Primary Action** | `variant="primary"` (VU Blue) | Multiple primary buttons |
+| **Status** | Text + small dot | Large colored badges |
+| **Cards** | Subtle border (`border`) | Heavy shadows, colored borders |
+| **Text** | `text-foreground`, `text-muted-foreground` | Everything black |
+
+### Data Table Pattern
+
+**When to use:** Dense information display (20+ items)
+
+```tsx
+<Card>
+  <Table>
+    <TableHeader>
+      <TableRow>
+        <TableHead className="w-16 text-xs uppercase tracking-wider text-muted-foreground">
+          ID
+        </TableHead>
+        <TableHead className="text-xs uppercase tracking-wider text-muted-foreground">
+          Name
+        </TableHead>
+        <TableHead className="w-24 text-right">Actions</TableHead>
+      </TableRow>
+    </TableHeader>
+    <TableBody>
+      {items.map((item) => (
+        <TableRow key={item.id} className="h-12 hover:bg-muted/50">
+          <TableCell className="font-mono text-xs text-muted-foreground">
+            {item.id}
+          </TableCell>
+          <TableCell className="text-sm">{item.name}</TableCell>
+          <TableCell className="text-right">
+            <Button variant="ghost" size="icon">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </TableCell>
+        </TableRow>
+      ))}
+    </TableBody>
+  </Table>
+</Card>
+```
+
 ## Installation & Usage
 
 ```bash

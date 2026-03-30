@@ -1,9 +1,9 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useMemo, useState } from 'react';
 import { Search } from 'lucide-react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/Dialog';
-import { Input } from '@/components/Input';
-import { cn } from '@/lib/utils';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../components/Dialog';
+import { Input } from '../components/Input';
+import { cn } from '../lib/utils';
 export function CommandPalette({ open, onOpenChange, items, title = 'Command Palette', description = 'Search for an action', }) {
     const [query, setQuery] = useState('');
     const filtered = useMemo(() => items.filter((item) => item.label.toLowerCase().includes(query.toLowerCase())), [items, query]);

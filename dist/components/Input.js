@@ -1,7 +1,7 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import { forwardRef } from 'react';
-import { cn } from '@/lib/utils';
-import { inputStyles } from '@/styles/components';
+import { cn } from '../lib/utils';
+import { inputStyles } from '../styles/components';
 export const Input = forwardRef(function Input({ className, variant, size, state, ...props }, ref) {
     return _jsx("input", { ref: ref, className: cn(inputStyles({ variant, size, state }), className), ...props });
 });

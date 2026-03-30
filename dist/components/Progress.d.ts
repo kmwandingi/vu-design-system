@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from 'react';
-import { type ProgressStyles } from '@/styles/components';
+import { type ProgressStyles } from '../styles/components';
 type ProgressProps = HTMLAttributes<HTMLDivElement> & ProgressStyles & {
     value?: number;
     indicatorClassName?: string;

@@ -1,6 +1,6 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '../lib/utils';
 export function Stepper({ className, items, ...props }) {
     return (_jsx("ol", { className: cn('grid gap-4 md:grid-cols-3', className), ...props, children: items.map((item, index) => {
             const status = item.status ?? 'upcoming';
