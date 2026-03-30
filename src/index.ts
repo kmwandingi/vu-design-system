@@ -119,4 +119,3 @@ export type {
   ProgressStyles,
   SpinnerStyles,
 } from './styles/components';
-import './styles/theme.css';

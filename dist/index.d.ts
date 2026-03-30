@@ -45,5 +45,4 @@ export { cn } from './lib/utils';
 export { Icons } from './styles/icons';
 export { buttonVariants, badgeVariants, cardStyles, inputStyles, alertVariants, toastVariants, avatarStyles, separatorStyles, skeletonStyles, progressStyles, spinnerStyles, containerStyles, focusRingStyles, disabledStyles, activeStyles, hoverLiftStyles, cardHoverStyles, gradientStyles, textGradientStyles, animationStyles, glassStyles, backdropStyles, } from './styles/components';
 export type { ButtonVariants, BadgeVariants, CardStyles, InputStyles, AlertVariants, ToastVariants, AvatarStyles, SeparatorStyles, SkeletonStyles, ProgressStyles, SpinnerStyles, } from './styles/components';
-import './styles/theme.css';
 //# sourceMappingURL=index.d.ts.map
