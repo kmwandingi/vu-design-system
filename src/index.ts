@@ -60,7 +60,7 @@ export { StatusPanel } from './components/StatusPanel';
 export { ResultSummary } from './components/ResultSummary';
 export { ActivityFeedItem } from './components/ActivityFeedItem';
 export { KeyValueList } from './components/KeyValueList';
-export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from './components/Table';
+export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption, useTableSort } from './components/Table';
 export { FilterBar } from './components/FilterBar';
 export { SearchInput } from './components/SearchInput';
 export {

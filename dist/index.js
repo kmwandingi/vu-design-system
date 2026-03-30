@@ -29,7 +29,7 @@ export { StatusPanel } from './components/StatusPanel.js';
 export { ResultSummary } from './components/ResultSummary.js';
 export { ActivityFeedItem } from './components/ActivityFeedItem.js';
 export { KeyValueList } from './components/KeyValueList.js';
-export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption } from './components/Table.js';
+export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption, useTableSort } from './components/Table.js';
 export { FilterBar } from './components/FilterBar.js';
 export { SearchInput } from './components/SearchInput.js';
 export { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationPrevious, PaginationNext, PaginationEllipsis, } from './components/Pagination.js';

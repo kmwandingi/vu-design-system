@@ -377,10 +377,10 @@ npm run prepare
 
 ```bash
 cd /path/to/your-project
-npm install /Users/k.n.m.mwandingivu.nl/Documents/Projects/vu-design-system
+npm install github:kmwandingi/vu-design-system
 ```
 
-Then import and use any component. Changes to the design system require `npm run build:lib` in the design system folder to propagate.
+Then import and use any component.
 
 ## When Helping Users
 
