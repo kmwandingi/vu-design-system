@@ -3,11 +3,9 @@ const path = require('path');
 
 function fixFile(file) {
   let content = fs.readFileSync(file, 'utf8');
-  // Add .js extension to relative imports/exports without it
-  content = content.replace(/from ['"](\.\/[^'"]+)(?<!.js)['"];/g, "from '$1.js';");
-  content = content.replace(/from ['"](\.\.\/[^'"]+)(?<!.js)['"];/g, "from '$1.js';");
-  content = content.replace(/import ['"](\.\/[^'"]+)(?<!.js)['"];/g, "import '$1.js';");
-  content = content.replace(/import ['"](\.\.\/[^'"]+)(?<!.js)['"];/g, "import '$1.js';");
+  // Add .js extension to relative imports/exports without it (but not .css)
+  content = content.replace(/from ['"](\.\.?\/[^'"]+)(?<!\.js)(?<!\.css)['"];/g, "from '$1.js';");
+  content = content.replace(/import ['"](\.\.?\/[^'"]+)(?<!\.js)(?<!\.css)['"];/g, "import '$1.js';");
   fs.writeFileSync(file, content);
 }
 

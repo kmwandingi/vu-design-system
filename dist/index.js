@@ -44,5 +44,5 @@ export { Sheet as Drawer } from './components/Sheet.js';
 export { cn } from './lib/utils.js';
 export { Icons } from './styles/icons.js';
 export { buttonVariants, badgeVariants, cardStyles, inputStyles, alertVariants, toastVariants, avatarStyles, separatorStyles, skeletonStyles, progressStyles, spinnerStyles, containerStyles, focusRingStyles, disabledStyles, activeStyles, hoverLiftStyles, cardHoverStyles, gradientStyles, textGradientStyles, animationStyles, glassStyles, backdropStyles, } from './styles/components.js';
-import './styles/theme.css.js';
+import './styles/theme.css';
 //# sourceMappingURL=index.js.map
