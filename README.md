@@ -219,3 +219,65 @@ The package is organized conceptually around recurring UI situations observed ac
 - dashboards, summaries, and structured decision views
 - step-based journeys and process visibility
 - agentic / AI-assisted evidence and reasoning patterns
+
+## Contributing
+
+We welcome contributions! If you find a missing primitive, need a new prop, or want to add a feature:
+
+### Reporting Issues
+
+Open an issue on GitHub describing:
+- What primitive/prop is missing
+- Your use case
+- Expected API or behavior
+
+### Adding a Component or Feature
+
+1. **Fork and clone** the repo:
+   ```bash
+   git clone https://github.com/kmwandingi/vu-design-system.git
+   cd vu-design-system
+   ```
+
+2. **Create a branch**:
+   ```bash
+   git checkout -b feat/add-[component-name]
+   ```
+
+3. **Add your component** in `src/components/`:
+   - Follow existing patterns (see `Button.tsx` or `Checkbox.tsx`)
+   - Export from `src/index.ts`
+   - Add to breaking-change allowlist in `scripts/check-exports.mjs`
+
+4. **Test the build**:
+   ```bash
+   npm run build:lib
+   ```
+
+5. **Commit and push** (pre-commit hooks run automatically):
+   ```bash
+   git add .
+   git commit -m "feat: add [component] with [features]"
+   git push origin feat/add-[component-name]
+   ```
+
+6. **Open a Pull Request** on GitHub
+
+### Adding New Exports
+
+When adding new exports, update `scripts/check-exports.mjs`:
+```js
+const requiredExports = [
+  // ... existing exports
+  'YourNewComponent',  // Add here
+];
+```
+
+This ensures the pre-commit hook knows about your new export and won't reject it as an error.
+
+### Design Principles for Contributions
+
+- **Follow The Five Rules** (see skill files)
+- **Accessibility first** — WCAG 2.2 AA compliance
+- **Composition over configuration** — small primitives that compose
+- **No breaking changes** — only add, never remove exports without major version bump

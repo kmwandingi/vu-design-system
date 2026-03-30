@@ -411,3 +411,25 @@ import {
 - Screenshots: `screenshots/` folder (captured via Playwright)
 - Plan & decisions: `PLAN.md`
 - This skill file: `.claude/skills.md` or `.windsurf/skill.md`
+
+## Contributing
+
+Missing a primitive? Need a prop? Want to add a component?
+
+**Option 1: Open an Issue**
+Describe what's missing and your use case at `https://github.com/kmwandingi/vu-design-system/issues`
+
+**Option 2: Submit a PR**
+1. Fork: `git clone https://github.com/kmwandingi/vu-design-system.git`
+2. Create branch: `git checkout -b feat/your-feature`
+3. Add component in `src/components/`, export from `src/index.ts`
+4. **Important**: Add new export to `scripts/check-exports.mjs` allowlist
+5. Test: `npm run build:lib`
+6. Commit and push (pre-commit hooks run automatically)
+7. Open Pull Request
+
+**Contribution Principles:**
+- Follow The Five Rules (restraint, whitespace, single primary action, etc.)
+- Accessibility first (WCAG 2.2 AA)
+- Add new exports to the allowlist — never remove existing ones
+- Composition over configuration
