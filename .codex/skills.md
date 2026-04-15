@@ -71,6 +71,54 @@ Agents should optimize for the **look and feel of the whole page**, not mere com
    - Body: `text-sm text-foreground`
    - Secondary info: `text-sm text-muted-foreground`
 
+### Interaction Patterns
+
+**Inline over modal:**
+- Quick edits → inline editing (click-to-edit fields)
+- Form inputs → allow natural focus rings, never clip focus states
+- Modals → use sparingly, only for complex multi-step processes
+
+**State transitions:**
+- Every interactive element needs hover, focus, and active states
+- Use `transition-colors duration-150` for smooth state changes
+
+### Color Sophistication Rules
+
+**Avoid generic combinations that look like default Tailwind:**
+- Purple/blue/pink gradients — they look like every other site
+- Dark blue + light gray cards — too common
+- "Primary blue" + "Success green" + "Warning yellow" without nuance
+
+**Use VU colors with intention:**
+- VU Blue scale: 50 for subtle backgrounds, 500 for primary, 600 for text
+- Orange for warm emphasis (not just "warnings")
+- Mix grays with subtle tints: `bg-slate-50`, `bg-muted/40`
+
+### Icon Library
+
+**Always use lucide-react.** Never use:
+- Emoji characters (🤖 💡 🎯 ⚡ etc.)
+- Custom SVGs when lucide has a matching icon
+- Icon-only buttons without tooltips or text labels
+
+### Motion & Detail (Academic Restraint)
+
+Motion separates good from extraordinary — but keep it professional:
+
+**Subtle transitions:**
+- Button hover: `hover:bg-vu-blue-600` (color shift, not transform)
+- Card hover: `hover:border-vu-blue-200` (subtle border glow)
+- Input focus: ring using `ring-vu-blue-500/20`
+
+**Loading states:**
+- Use `LoadingState` component with skeletons
+- Never leave users guessing if something is happening
+
+**NEVER:**
+- Parallax scrolling, bouncing animations
+- Transform scale on hover (feels toy-like)
+- Multiple simultaneous animations
+
 ### Standard Application Layout
 
 ```tsx

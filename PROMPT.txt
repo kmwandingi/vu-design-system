@@ -35,11 +35,12 @@ Build pages using these shared patterns **first**, fall back to primitives only 
    - **Section differentiation** — alternating `bg-muted/30` and `bg-slate-50`, not everything white
    - **Active/selected states** — `bg-vu-blue-100` for selected items, `bg-orange-50` for warnings
 
-2. **Generous whitespace** — Cramped looks amateur:
+2. **Whitespace is luxury** — Use 2-3x more spacing than feels comfortable:
    - Cards: minimum `p-6` (24px)
    - Sections: `space-y-6` (24px gap)
    - Tables: row height `h-12` with `py-3`
    - Page padding: `p-8` (32px)
+   - Cramped designs look cheap — breathing room signals quality
 
 3. **Single primary action** — One `variant="primary"` button per view. Secondary: `outline` or `secondary`. Tertiary: `ghost` or icon-only.
 
@@ -52,6 +53,64 @@ Build pages using these shared patterns **first**, fall back to primitives only 
    - Page titles: `text-xl font-semibold`
    - Body: `text-sm text-foreground`
    - Secondary: `text-sm text-muted-foreground`
+
+## Interaction Patterns
+
+**Inline over modal:**
+- Quick edits → inline editing (click-to-edit fields)
+- Form inputs → allow natural focus rings, never clip focus states
+- Modals → use sparingly, only for complex multi-step processes
+
+**State transitions:**
+- Every interactive element needs hover, focus, and active states
+- Use `transition-colors duration-150` for smooth state changes
+- Loading states should feel intentional, not abrupt
+
+## Color Sophistication Rules
+
+**Avoid generic combinations that look like default Tailwind:**
+- ❌ Purple/blue/pink gradients — they look like every other site
+- ❌ Dark blue + light gray cards — too common
+- ❌ "Primary blue" + "Success green" + "Warning yellow" without nuance
+
+**Use VU colors with intention:**
+- ✅ VU Blue scale: 50 for subtle backgrounds, 500 for primary, 600 for text
+- ✅ Orange for warm emphasis (not just "warnings")
+- ✅ Green for success states, purple for AI/tech contexts
+- Mix grays with subtle tints: `bg-slate-50`, `bg-muted/40`
+
+## Icon Library
+
+**Always use lucide-react.** Never use:
+- Emoji characters (🤖 💡 🎯 ⚡ etc.)
+- Custom SVGs when lucide has a matching icon
+- Icon-only buttons without tooltips or text labels
+
+**Semantic icon choices:**
+- Actions: `Pencil`, `Trash2`, `Copy`, `Download`
+- Navigation: `ChevronLeft`, `ChevronRight`, `Home`, `Settings`
+- Status: `CheckCircle`, `AlertCircle`, `Info`, `Loader2`
+- Data: `BarChart3`, `PieChart`, `Table`, `FileText`
+
+## Motion & Detail (Academic Restraint)
+
+Motion separates good from extraordinary — but keep it professional:
+
+**Subtle transitions:**
+- Button hover: `hover:bg-vu-blue-600` (color shift, not transform)
+- Card hover: `hover:border-vu-blue-200` (subtle border glow)
+- Input focus: ring using `ring-vu-blue-500/20`
+
+**Loading states:**
+- Use `LoadingState` component with skeletons
+- Spinners for async actions, progress for multi-step
+- Never leave users guessing if something is happening
+
+**NEVER:**
+- Parallax scrolling
+- Bouncing animations
+- Transform scale on hover (feels toy-like)
+- Multiple simultaneous animations
 
 ## Standard Layout
 
@@ -91,13 +150,20 @@ Before submitting any UI work, verify:
 
 **If you check fewer than 7/10, the design system adoption is incomplete.**
 
-## Anti-Patterns (Never Do These)
+## Anti-Patterns — Enforcement Rules
 
-- Creating local `SectionHeader`, `FormField`, `StatCard`, or `StatusPanel` wrappers
-- Flat white/gray everywhere — use subtle color tints for visual depth
-- Multiple primary buttons in one view
-- Large colored badges for status (use dots + text)
-- Heavy card shadows or decorative borders
+**If the page has fewer than 7/10 checklist items complete → redesign.**
+
+### NEVER:
+- Create local `SectionHeader`, `FormField`, `StatCard`, or `StatusPanel` wrappers when the system provides them
+- Use flat white/gray everywhere — color tints are required for visual depth
+- Place multiple `variant="primary"` buttons in one view
+- Use large colored badges for status (dots + text only)
+- Add heavy card shadows or decorative borders
+- Use emojis instead of lucide-react icons
+- Apply generic Tailwind purple/blue/pink combinations
+- Center-align text containers (disrupts F-pattern reading)
+- Use `transition: all` — breaks transforms, always target specific properties
 
 ## Installation
 
