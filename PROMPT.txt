@@ -136,19 +136,62 @@ Motion separates good from extraordinary — but keep it professional:
 
 ## Verification Checklist
 
-Before submitting any UI work, verify:
+**Before submitting any UI work, verify ALL items below:**
 
+### Golden Rule
+- [ ] **Showcase-level fidelity** — Page looks like the VU showcase, not generic components with VU colors
+- [ ] **Composition stack used** — PageHeader, SectionHeader, FormField, StatCard, etc. (not just Button/Card/Input)
+
+### Design Rules
+- [ ] **Color depth** — Not flat white/gray; uses `bg-vu-blue-50`, `bg-slate-50`, `bg-muted/30` for visual hierarchy
+- [ ] **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
+- [ ] **Card highlights** — Left borders or subtle tints for featured cards
+- [ ] **Section differentiation** — Alternating backgrounds, not everything white
+- [ ] **Whitespace luxury** — `p-6` on cards, `space-y-6` sections, `p-8` page padding
+- [ ] **Single primary action** — Only ONE `variant="primary"` button per view
+- [ ] **Subtle status** — Dots + text (`text-vu-blue-600`), not big colored badges
+- [ ] **Clear hierarchy** — Section headers in `text-sm uppercase tracking-wider text-muted-foreground`
+
+### Interaction & Patterns
+- [ ] **Inline over modal** — Quick edits use inline editing, not modals
+- [ ] **Focus states visible** — Natural focus rings, never clipped
+- [ ] **State transitions** — Hover/focus/active on every interactive element with `transition-colors duration-150`
+- [ ] **Loading states** — Use `LoadingState` with skeletons, never leave users guessing
+
+### Color Sophistication
+- [ ] **No generic combos** — Avoid purple/blue/pink gradients, dark blue + light gray cards
+- [ ] **VU scale used** — Blue 50/500/600 with intention, orange for warmth, subtle grays
+
+### Icons
+- [ ] **lucide-react only** — No emojis (🤖 💡 ⚡), no custom SVGs when lucide exists
+- [ ] **Semantic icons** — Actions use `Pencil`/`Trash2`, status uses `CheckCircle`/`AlertCircle`
+
+### Motion (Academic Restraint)
+- [ ] **Subtle transitions** — Color shifts, border glows — NO transform scale, NO bouncing, NO parallax
+- [ ] **No animation chaos** — No multiple simultaneous animations
+
+### Layout
+- [ ] **Standard two-column** — Sidebar (`w-[280px] bg-slate-50`) + main (`p-8`) when appropriate
+- [ ] **No center-aligned containers** — F-pattern reading flow preserved
+
+### Components
 - [ ] `PageHeader` or equivalent system header present
-- [ ] System spacing used (`space-y-6`, `p-6` on cards)
-- [ ] Cards use system variants, not custom shadows/borders
-- [ ] Forms use `FormField`, not bespoke wrappers
-- [ ] Status/loading uses `LoadingState`, `StatusPanel`, or `AIState`
-- [ ] Metrics use `StatCard`, not one-off KPI boxes
-- [ ] Metadata uses `KeyValueList`, not hand-built rows
-- [ ] Single primary button hierarchy respected
-- [ ] Colors create visual depth without chaos — purposeful accents, not rainbow
+- [ ] `SectionHeader` for section rhythm (compact uppercase when needed)
+- [ ] `FormField` for all forms (not bespoke label wrappers)
+- [ ] `LoadingState`/`StatusPanel`/`AIState` for async states
+- [ ] `StatCard` for metrics (not one-off KPI boxes)
+- [ ] `KeyValueList` for metadata (not hand-built rows)
+- [ ] `FilterBar`/`SearchInput` for search/filter areas
+- [ ] `ResultSummary` for decision/review surfaces
+- [ ] `InfoHint` for explanatory tooltips where appropriate
 
-**If you check fewer than 7/10, the design system adoption is incomplete.**
+### Anti-Patterns Verified
+- [ ] No local `SectionHeader`/`FormField`/`StatCard` wrappers
+- [ ] No heavy card shadows or decorative borders
+- [ ] No `transition: all` — specific transitions only
+- [ ] No icon-only buttons without tooltips
+
+**Required: Check ALL items. If any are unchecked, fix before submitting.**
 
 ## Anti-Patterns — Enforcement Rules
 
