@@ -49,11 +49,12 @@ Agents should optimize for the **look and feel of the whole page**, not mere com
    - **Section differentiation** — alternating `bg-muted/30` and `bg-slate-50`, not everything white
    - **Active/selected states** — `bg-vu-blue-100` for selected items, `bg-orange-50` for warnings
 
-2. **Generous whitespace** — Cramped interfaces look unprofessional:
+2. **Whitespace is luxury** — Use 2-3x more spacing than feels comfortable:
    - Cards: minimum `p-6` (24px)
    - Sections: `space-y-6` (24px gap)
    - Tables: row height `h-12` with `py-3`
    - Page padding: `p-8` (32px)
+   - Cramped designs look cheap — breathing room signals quality
 
 3. **Single primary action** — Only ONE button gets `variant="primary"` per view:
    - Primary: The main thing user should do
@@ -101,6 +102,12 @@ Agents should optimize for the **look and feel of the whole page**, not mere com
 - Custom SVGs when lucide has a matching icon
 - Icon-only buttons without tooltips or text labels
 
+**Semantic icon choices:**
+- Actions: `Pencil`, `Trash2`, `Copy`, `Download`
+- Navigation: `ChevronLeft`, `ChevronRight`, `Home`, `Settings`
+- Status: `CheckCircle`, `AlertCircle`, `Info`, `Loader2`
+- Data: `BarChart3`, `PieChart`, `Table`, `FileText`
+
 ### Motion & Detail (Academic Restraint)
 
 Motion separates good from extraordinary — but keep it professional:
@@ -144,45 +151,105 @@ Motion separates good from extraordinary — but keep it professional:
 </div>
 ```
 
+### Mandatory Composition Stack
+
+Build pages using these shared patterns **first**, fall back to primitives only when truly necessary:
+
+| Pattern | Component | Use For |
+|---------|-----------|---------|
+| Page framing | `PageHeader` | Top-level page title, description, actions |
+| Section rhythm | `SectionHeader` | Section headers, compact utility headings |
+| Form composition | `FormField` | Field labels, helpers, errors, inline layouts |
+| Async states | `LoadingState`, `StatusPanel`, `AIState` | Loading, progress, agent status |
+| Metrics | `StatCard` | KPIs, dashboard numbers, compact summaries |
+| Search/filter | `FilterBar` + `SearchInput` | List controls, search, filters, export |
+| Decisions | `ResultSummary` | Review blocks, recommendations, next steps |
+| Metadata | `KeyValueList` | Data inspection, detail views |
+| Empty states | `EmptyState` | No results, zero-content handling |
+| Hints | `InfoHint` | Inline explanatory tooltips |
+
 ### Showcase-First Composition Rule
 
 When redesigning or upgrading an application, follow this order:
 
 1. Start from the **showcase patterns**, not from local ad hoc markup.
-2. Use shared page-level compositions first:
-   - `PageHeader`
-   - `SectionHeader`
-   - `FormField`
-   - `LoadingState`
-   - `StatusPanel`
-   - `AIState`
-   - `StatCard`
-   - `FilterBar`
-   - `SearchInput`
-   - `ResultSummary`
-   - `EmptyState`
-   - `KeyValueList`
+2. Use shared page-level compositions first (see table above).
 3. Only fall back to primitives when the composition layer truly does not fit.
 4. If a page still needs a local wrapper, first ask whether the wrapper should become a reusable design-system pattern.
 
 The goal is not "use more components." The goal is **make the app feel like the showcase**.
 
-### Whole-Page Feel Checklist
+### Verification Checklist
 
-Before considering a downstream page aligned with the design system, verify:
+**Before submitting any UI work, verify ALL items below:**
 
-- `PageHeader` or an equivalent top-level system header is used
-- sections use system spacing and rhythm, not ad hoc margins
-- cards use system variants and padding
-- search/filter/action areas use `FilterBar` and `SearchInput` where appropriate
-- forms use `FormField` rather than bespoke label/helper/error wrappers
-- status/loading/review surfaces use `LoadingState`, `StatusPanel`, `AIState`, or `ResultSummary`
-- metrics use `StatCard` rather than one-off KPI boxes
-- metadata inspection uses `KeyValueList` rather than hand-built rows
-- buttons reflect a single-primary-action hierarchy
-- brand colors are semantic and restrained, never decorative
+#### Golden Rule
+- [ ] **Showcase-level fidelity** — Page looks like the VU showcase, not generic components with VU colors
+- [ ] **Composition stack used** — PageHeader, SectionHeader, FormField, StatCard, etc. (not just Button/Card/Input)
 
-If several of these are missing, the page is **not yet truly on the design system**.
+#### Design Rules
+- [ ] **Color depth** — Not flat white/gray; uses `bg-vu-blue-50`, `bg-slate-50`, `bg-muted/30` for visual hierarchy
+- [ ] **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
+- [ ] **Card highlights** — Left borders or subtle tints for featured cards
+- [ ] **Section differentiation** — Alternating backgrounds, not everything white
+- [ ] **Whitespace luxury** — `p-6` on cards, `space-y-6` sections, `p-8` page padding
+- [ ] **Single primary action** — Only ONE `variant="primary"` button per view
+- [ ] **Subtle status** — Dots + text (`text-vu-blue-600`), not big colored badges
+- [ ] **Clear hierarchy** — Section headers in `text-sm uppercase tracking-wider text-muted-foreground`
+
+#### Interaction & Patterns
+- [ ] **Inline over modal** — Quick edits use inline editing, not modals
+- [ ] **Focus states visible** — Natural focus rings, never clipped
+- [ ] **State transitions** — Hover/focus/active on every interactive element with `transition-colors duration-150`
+- [ ] **Loading states** — Use `LoadingState` with skeletons, never leave users guessing
+
+#### Color Sophistication
+- [ ] **No generic combos** — Avoid purple/blue/pink gradients, dark blue + light gray cards
+- [ ] **VU scale used** — Blue 50/500/600 with intention, orange for warmth, subtle grays
+
+#### Icons
+- [ ] **lucide-react only** — No emojis (🤖 💡 ⚡), no custom SVGs when lucide exists
+- [ ] **Semantic icons** — Actions use `Pencil`/`Trash2`, status uses `CheckCircle`/`AlertCircle`
+
+#### Motion (Academic Restraint)
+- [ ] **Subtle transitions** — Color shifts, border glows — NO transform scale, NO bouncing, NO parallax
+- [ ] **No animation chaos** — No multiple simultaneous animations
+
+#### Layout
+- [ ] **Standard two-column** — Sidebar (`w-[280px] bg-slate-50`) + main (`p-8`) when appropriate
+- [ ] **No center-aligned containers** — F-pattern reading flow preserved
+
+#### Components
+- [ ] `PageHeader` or equivalent system header present
+- [ ] `SectionHeader` for section rhythm (compact uppercase when needed)
+- [ ] `FormField` for all forms (not bespoke label wrappers)
+- [ ] `LoadingState`/`StatusPanel`/`AIState` for async states
+- [ ] `StatCard` for metrics (not one-off KPI boxes)
+- [ ] `KeyValueList` for metadata (not hand-built rows)
+- [ ] `FilterBar`/`SearchInput` for search/filter areas
+- [ ] `ResultSummary` for decision/review surfaces
+- [ ] `InfoHint` for explanatory tooltips where appropriate
+
+#### Anti-Patterns Verified
+- [ ] No local `SectionHeader`/`FormField`/`StatCard` wrappers
+- [ ] No heavy card shadows or decorative borders
+- [ ] No `transition: all` — specific transitions only
+- [ ] No icon-only buttons without tooltips
+
+**Required: Check ALL items. If any are unchecked, fix before submitting.**
+
+### Anti-Patterns — Enforcement Rules
+
+**NEVER:**
+- Create local `SectionHeader`, `FormField`, `StatCard`, or `StatusPanel` wrappers when the system provides them
+- Use flat white/gray everywhere — color tints are required for visual depth
+- Place multiple `variant="primary"` buttons in one view
+- Use large colored badges for status (dots + text only)
+- Add heavy card shadows or decorative borders
+- Use emojis instead of lucide-react icons
+- Apply generic Tailwind purple/blue/pink combinations
+- Center-align text containers (disrupts F-pattern reading)
+- Use `transition: all` — breaks transforms, always target specific properties
 
 ### Color Usage Matrix
 
@@ -242,7 +309,7 @@ npm install github:kmwandingi/vu-design-system
 ### Local development
 
 ```bash
-npm install /Users/k.n.m.mwandingivu.nl/Documents/Projects/vu-design-system
+npm install /path/to/vu-design-system
 ```
 
 # Required peer dependencies
