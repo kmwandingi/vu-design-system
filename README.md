@@ -18,7 +18,9 @@ Or start in one step:
 ./start.sh
 ```
 
-## Run the showcase
+## Showcase
+
+Run the interactive showcase to explore all components:
 
 ```bash
 npm run dev
@@ -29,6 +31,16 @@ Or use the project wrapper:
 ```bash
 ./start.sh
 ```
+
+### Showcase screenshots
+
+| Foundations | Components | Workflow |
+|-------------|------------|----------|
+| ![Foundations](screenshots/01-foundations.png) | ![Components](screenshots/02-components.png) | ![Workflow](screenshots/03-workflow.png) |
+
+| Data | AI & Async |
+|------|------------|
+| ![Data](screenshots/04-data.png) | ![AI](screenshots/05-ai.png) |
 
 ## Build the showcase
 
@@ -50,7 +62,7 @@ Install from local path into any project:
 
 ```bash
 cd /path/to/your/project
-npm install /Users/k.n.m.mwandingivu.nl/Documents/Projects/vu-design-system
+npm install /path/to/vu-design-system
 ```
 
 Or add to `package.json`:
@@ -58,7 +70,7 @@ Or add to `package.json`:
 ```json
 {
   "dependencies": {
-    "@vu/design-system": "file:/Users/k.n.m.mwandingivu.nl/Documents/Projects/vu-design-system"
+    "@vu/design-system": "file:/path/to/vu-design-system"
   }
 }
 ```
@@ -72,7 +84,7 @@ npm install
 ### Build the library (when making changes)
 
 ```bash
-cd /Users/k.n.m.mwandingivu.nl/Documents/Projects/vu-design-system
+cd /path/to/vu-design-system
 npm run build:lib
 ```
 
