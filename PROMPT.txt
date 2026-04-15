@@ -1,0 +1,121 @@
+# VU Design System — Agent Prompt
+
+You are building with the **VU Design System**. This is not a generic component library. Follow these rules or the UI will look boring and flat.
+
+## The Golden Rule
+
+**Never stop at primitives.** If you import `Button`, `Card`, `Input` and call it done, you have failed. The target is **showcase-level whole-page fidelity** — the app must look and feel like the VU Design System showcase, not like a generic app with VU-colored buttons.
+
+## Mandatory Composition Stack
+
+Build pages using these shared patterns **first**, fall back to primitives only when truly necessary:
+
+| Pattern | Component | Use For |
+|---------|-----------|---------|
+| Page framing | `PageHeader` | Top-level page title, description, actions |
+| Section rhythm | `SectionHeader` | Section headers, compact utility headings |
+| Form composition | `FormField` | Field labels, helpers, errors, inline layouts |
+| Async states | `LoadingState`, `StatusPanel`, `AIState` | Loading, progress, agent status |
+| Metrics | `StatCard` | KPIs, dashboard numbers, compact summaries |
+| Search/filter | `FilterBar` + `SearchInput` | List controls, search, filters, export |
+| Decisions | `ResultSummary` | Review blocks, recommendations, next steps |
+| Metadata | `KeyValueList` | Data inspection, detail views |
+| Empty states | `EmptyState` | No results, zero-content handling |
+| Hints | `InfoHint` | Inline explanatory tooltips |
+
+## The Five Design Rules
+
+1. **Restraint over abundance** — Grays by default. Brand colors (VU Blue, Orange, Green, Purple) only for:
+   - Primary actions (buttons, links)
+   - Status indicators (success, warning, error, info)
+   - Data visualization
+   - **Never** for decoration
+
+2. **Generous whitespace** — Cramped looks amateur:
+   - Cards: minimum `p-6` (24px)
+   - Sections: `space-y-6` (24px gap)
+   - Tables: row height `h-12` with `py-3`
+   - Page padding: `p-8` (32px)
+
+3. **Single primary action** — One `variant="primary"` button per view. Secondary: `outline` or `secondary`. Tertiary: `ghost` or icon-only.
+
+4. **Subtle status indicators** — Glanceable, not loud:
+   - ✅ `<span className="text-vu-blue-600">● Primary</span>`
+   - ❌ `<Badge variant="primary">Primary</Badge>` (too heavy)
+
+5. **Clear hierarchy** — F-pattern scanning:
+   - Section headers: `text-sm uppercase tracking-wider text-muted-foreground`
+   - Page titles: `text-xl font-semibold`
+   - Body: `text-sm text-foreground`
+   - Secondary: `text-sm text-muted-foreground`
+
+## Standard Layout
+
+```tsx
+<div className="flex h-screen">
+  <aside className="w-[280px] border-r bg-muted/30 p-6 flex flex-col gap-8">
+    {/* Sidebar: nav, primary actions, stats */}
+    <SectionHeader title="Step Label" size="compact" />
+    <Button variant="primary" className="w-full">Action</Button>
+    <div className="grid grid-cols-2 gap-3">
+      <StatCard size="compact" value="12" label="Clusters" />
+    </div>
+  </aside>
+  
+  <main className="flex-1 p-8 overflow-auto">
+    <PageHeader title="Analysis Results" description="Review and take action" />
+    <Card className="mt-6">
+      {/* Main content */}
+    </Card>
+  </main>
+</div>
+```
+
+## Verification Checklist
+
+Before submitting any UI work, verify:
+
+- [ ] `PageHeader` or equivalent system header present
+- [ ] System spacing used (`space-y-6`, `p-6` on cards)
+- [ ] Cards use system variants, not custom shadows/borders
+- [ ] Forms use `FormField`, not bespoke wrappers
+- [ ] Status/loading uses `LoadingState`, `StatusPanel`, or `AIState`
+- [ ] Metrics use `StatCard`, not one-off KPI boxes
+- [ ] Metadata uses `KeyValueList`, not hand-built rows
+- [ ] Single primary button hierarchy respected
+- [ ] Brand colors semantic and restrained
+
+**If you check fewer than 7/10, the design system adoption is incomplete.**
+
+## Anti-Patterns (Never Do These)
+
+- Creating local `SectionHeader`, `FormField`, `StatCard`, or `StatusPanel` wrappers
+- Using `bg-vu-blue-100`, `bg-vu-orange-50` as backgrounds
+- Multiple primary buttons in one view
+- Large colored badges for status (use dots + text)
+- Heavy card shadows or decorative borders
+
+## Installation
+
+```bash
+npm install github:kmwandingi/vu-design-system
+```
+
+```ts
+import '@vu/design-system/theme.css';
+import { 
+  PageHeader, SectionHeader, FormField, StatCard,
+  LoadingState, StatusPanel, FilterBar, SearchInput,
+  ResultSummary, KeyValueList, EmptyState, InfoHint
+} from '@vu/design-system';
+```
+
+## Reference
+
+- **Showcase**: Run `npm run dev` in the design system folder
+- **Skill file**: `.windsurf/skill.md` or `.claude/skills.md`
+- **Design Manual**: `DESIGN_MANUAL.md`
+
+---
+
+**Remember: The goal is not "use more components." The goal is make the app feel like the showcase.**
