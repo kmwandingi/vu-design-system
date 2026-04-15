@@ -1,5 +1,7 @@
 # VU Design System Guidelines
 
+> **For AI Agents:** This is a human reference document. Agents must follow `PROMPT.txt` and the `skills.md` files as the authoritative source. Key differences: PROMPT.txt mandates lucide-react icons only (no emojis), prohibits bouncing/spring animations, and requires "Whitespace is luxury" (2-3x more than comfortable).
+
 ## Overview
 
 This design system is based on the **Vrije Universiteit Amsterdam** brand identity, featuring:
@@ -159,41 +161,47 @@ Base unit: 0.25rem (4px)
 
 ## Icon Usage
 
-### Navigation Icons
-- Home, Menu, ChevronLeft/Right, Arrow directions
-- User, Settings, Globe, Map markers
+**Always use lucide-react.** Never use:
+- ❌ Emoji characters (🤖 💡 🎯 ⚡ etc.)
+- ❌ Custom SVGs when lucide has a matching icon
+- ❌ Icon-only buttons without tooltips or text labels
 
-### Status Icons
-- CheckCircle (success), XCircle (error)
-- AlertTriangle (warning), Info (information)
-- Bell (notifications), Shield (security)
+### Semantic Icon Choices
 
-### Action Icons
-- Search, Filter, Plus, Minus, Trash
-- Edit, Copy, Download, Upload
-- Play, Pause, Stop (media)
+| Category | Icons | Usage |
+|----------|-------|-------|
+| **Actions** | `Pencil`, `Trash2`, `Copy`, `Download` | Edit, delete, duplicate, save |
+| **Navigation** | `ChevronLeft`, `ChevronRight`, `Home`, `Settings` | Directional, app nav |
+| **Status** | `CheckCircle`, `AlertCircle`, `Info`, `Loader2` | Success, warning, info, loading |
+| **Data** | `BarChart3`, `PieChart`, `Table`, `FileText` | Analytics, reports, documents |
 
-### Document Icons
-- File, Folder, Image, Video, Music
-- Book, Newspaper, Scroll
+### Legacy Icon Categories (for reference)
+- Navigation: Menu, Arrow directions, User, Globe
+- Status: XCircle (error), AlertTriangle (warning), Bell (notifications), Shield (security)
+- Actions: Plus, Minus, Edit, Upload, Play, Pause, Stop
+- Documents: File, Folder, Image, Video, Music, Book
 
 ## Animation Guidelines
 
-**Transitions**
-- Fast: 100ms (hover states)
+> **Academic Restraint:** Motion separates good from extraordinary — but keep it professional. Subtle transitions only.
+
+**Subtle Transitions (USE THESE)**
+- Button hover: `hover:bg-vu-blue-600` (color shift, not transform)
+- Card hover: `hover:border-vu-blue-200` (subtle border glow)
+- Input focus: ring using `ring-vu-blue-500/20`
+- Loading states: Use `LoadingState` component with skeletons
+
+**Timing**
+- Fast: 100-150ms (hover states) — `transition-colors duration-150`
 - Normal: 200ms (standard transitions)
 - Slow: 300ms (page transitions)
 
-**Easing**
-- ease-out: Standard interactions
-- ease-spring: Playful bounces
-- ease-bounce: Attention-grabbing
-
-**Common Animations**
-- fade-in: Content appearance
-- slide-in: Panel/Modal entry
-- scale-in: Button press feedback
-- pulse: Loading/skeleton states
+**NEVER USE:**
+- ❌ Parallax scrolling
+- ❌ Bouncing animations (`ease-spring`, `ease-bounce`)
+- ❌ Transform scale on hover (feels toy-like)
+- ❌ Multiple simultaneous animations
+- ❌ `transition: all` — always target specific properties
 
 ## Accessibility
 
@@ -241,13 +249,18 @@ import { badgeVariants } from '@/styles/components';
 </span>
 ```
 
-### Card with Gradient
+### Card with Subtle Tint (NOT Gradients)
 ```tsx
-import { cardStyles, gradientStyles } from '@/styles/components';
+// ✅ DO: Subtle color tint for visual depth
+<Card className="border-l-2 border-vu-blue-500 bg-vu-blue-50/50">
+  <CardHeader>Featured Content</CardHeader>
+  <CardContent>...</CardContent>
+</Card>
 
-<div className={cn(cardStyles({ variant: 'elevated' }), gradientStyles['primary-subtle'])}>
+// ❌ DON'T: Use gradients
+<Card className="bg-gradient-to-r from-purple-500 to-pink-500">
   Content
-</div>
+</Card>
 ```
 
 ## Dark Mode

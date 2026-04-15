@@ -1,14 +1,16 @@
 # VU Design Manual
 
+> **For AI Agents:** This is a human reference document. Agents must follow `PROMPT.txt` and the `skills.md` files as the authoritative source. Key differences: PROMPT.txt allows "color with purpose AND depth" (not strict restraint), mandates "Whitespace is luxury" (2-3x more), and prohibits bouncing/scale animations.
+
 ## Philosophy
 
-The VU Design System embodies **academic clarity** — information-dense interfaces that remain breathable and professional. Every element serves a purpose. Color is intentional, not decorative. Whitespace creates hierarchy, not emptiness.
+The VU Design System embodies **academic clarity** — information-dense interfaces that remain breathable and professional. Every element serves a purpose. Color creates hierarchy and interest. Whitespace is luxury, not emptiness.
 
 ### Core Principles
 
-1. **Restraint over abundance** — Use color only to communicate meaning
+1. **Color with purpose AND depth** — Use color for meaning AND visual hierarchy (shades, tints, accents)
 2. **Information hierarchy** — Users should scan and find what matters
-3. **Breathing room** — Generous padding reduces cognitive load
+3. **Whitespace is luxury** — Use 2-3x more spacing than feels comfortable
 4. **Consistency in density** — Data-heavy can still be clean
 5. **Progressive disclosure** — Show what's needed, when it's needed
 
@@ -209,13 +211,22 @@ The standard application structure (as seen in SharePoint Duplicate Detection):
 
 ## Color Philosophy
 
-### The Restraint Rule
+### Color with Purpose AND Depth
 
-**Primary rule:** Default to grays. Use brand colors only for:
-1. Primary actions (buttons, links)
-2. Status indicators (success, warning, error)
-3. Data visualization
-4. Brand moments (logos, headers)
+Modern interfaces need visual interest. Use color for:
+1. **Primary actions** (buttons, links) — VU Blue
+2. **Status indicators** (success, warning, error, info)
+3. **Data visualization**
+4. **Visual hierarchy through color shades** — lighter tints for subtle, deeper tones for emphasis
+5. **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
+6. **Card highlights** — left-border accents (`border-l-2 border-vu-blue-500`), subtle background tints (`bg-vu-blue-50/50`)
+7. **Section differentiation** — alternating `bg-muted/30` and `bg-slate-50`, not everything white
+8. **Active/selected states** — `bg-vu-blue-100` for selected items, `bg-orange-50` for warnings
+
+**Avoid generic combinations that look like default Tailwind:**
+- Purple/blue/pink gradients — they look like every other site
+- Dark blue + light gray cards — too common
+- "Primary blue" + "Success green" + "Warning yellow" without nuance
 
 ### Color Usage Matrix
 
@@ -232,20 +243,25 @@ The standard application structure (as seen in SharePoint Duplicate Detection):
 ### Anti-Patterns (NEVER DO)
 
 ```tsx
-// ❌ DON'T: Color for decoration
-<Card className="border-vu-blue-500 shadow-vu-blue">
+// ❌ DON'T: Generic Tailwind combos (purple/blue/pink gradients)
+<Card className="bg-gradient-to-r from-purple-500 to-pink-500">
   {/* Content */}
 </Card>
 
-// ❌ DON'T: Multiple brand colors in one view
-<Button variant="primary">Blue</Button>
-<Button variant="accent">Orange</Button>
-<Button variant="tertiary">Green</Button>
+// ❌ DON'T: Multiple primary buttons in one view
+<Button variant="primary">Detect</Button>
+<Button variant="primary">Export</Button>
+<Button variant="primary">Settings</Button>
 
-// ❌ DON'T: Bright backgrounds
-<div className="bg-vu-blue-100 p-4">
-  {/* Content */}
+// ❌ DON'T: Flat white/gray everywhere (no visual depth)
+<div className="bg-white p-4">
+  <Card className="bg-gray-50">...</Card>
+  <Card className="bg-gray-50">...</Card>
 </div>
+
+// ❌ DON'T: Heavy colored badges for status
+<Badge variant="primary">Primary</Badge>
+<Badge variant="success">Active</Badge>
 ```
 
 ### Correct Patterns
@@ -279,13 +295,21 @@ The standard application structure (as seen in SharePoint Duplicate Detection):
 
 ## Spacing Philosophy
 
-### Density Scale
+### Whitespace is Luxury
+
+Use 2-3x more spacing than feels comfortable. Cramped designs look cheap — breathing room signals quality.
 
 | Density | Use Case | Classes |
 |---------|----------|---------|
 | **Compact** | Dense data tables, admin lists | `p-3`, `gap-2`, `space-y-2` |
-| **Standard** | Forms, cards, modals | `p-6`, `gap-4`, `space-y-4` |
-| **Spacious** | Landing pages, empty states | `p-8`, `gap-6`, `space-y-6` |
+| **Standard** | Forms, cards, modals | `p-6` (24px), `gap-4`, `space-y-6` (24px gap) |
+| **Spacious** | Landing pages, empty states | `p-8` (32px), `gap-6`, `space-y-6` |
+
+**Minimum standards:**
+- Cards: `p-6` (24px)
+- Sections: `space-y-6` (24px gap)
+- Tables: row height `h-12` with `py-3`
+- Page padding: `p-8` (32px)
 
 ### Section Spacing Rule
 
