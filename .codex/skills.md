@@ -39,11 +39,15 @@ Agents should optimize for the **look and feel of the whole page**, not mere com
 
 ### The Five Rules
 
-1. **Restraint over abundance** — Default to grays. Use brand colors ONLY for:
-   - Primary actions (buttons, links)
+1. **Color with purpose AND depth** — Modern interfaces need visual interest. Use color for:
+   - Primary actions (buttons, links) — VU Blue
    - Status indicators (success, warning, error, info)
    - Data visualization
-   - Never for decoration or "visual interest"
+   - **Visual hierarchy through color shades** — lighter tints for subtle, deeper tones for emphasis
+   - **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
+   - **Card highlights** — left-border accents (`border-l-2 border-vu-blue-500`), subtle background tints (`bg-vu-blue-50/50`)
+   - **Section differentiation** — alternating `bg-muted/30` and `bg-slate-50`, not everything white
+   - **Active/selected states** — `bg-vu-blue-100` for selected items, `bg-orange-50` for warnings
 
 2. **Generous whitespace** — Cramped interfaces look unprofessional:
    - Cards: minimum `p-6` (24px)
@@ -72,7 +76,7 @@ Agents should optimize for the **look and feel of the whole page**, not mere com
 ```tsx
 // Two-column layout (sidebar + main)
 <div className="flex h-screen">
-  <aside className="w-[280px] border-r bg-muted/30 p-6 flex flex-col gap-8">
+  <aside className="w-[280px] border-r bg-slate-50 p-6 flex flex-col gap-8">
     {/* Sidebar: Navigation, primary actions, stats */}
     <div className="space-y-3">
       <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wide">

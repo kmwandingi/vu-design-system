@@ -25,11 +25,15 @@ Build pages using these shared patterns **first**, fall back to primitives only 
 
 ## The Five Design Rules
 
-1. **Restraint over abundance** — Grays by default. Brand colors (VU Blue, Orange, Green, Purple) only for:
-   - Primary actions (buttons, links)
+1. **Color with purpose AND depth** — Modern interfaces need visual interest. Use color for:
+   - Primary actions (buttons, links) — VU Blue
    - Status indicators (success, warning, error, info)
    - Data visualization
-   - **Never** for decoration
+   - **Visual hierarchy through color shades** — lighter tints for subtle, deeper tones for emphasis
+   - **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
+   - **Card highlights** — left-border accents (`border-l-2 border-vu-blue-500`), subtle background tints (`bg-vu-blue-50/50`)
+   - **Section differentiation** — alternating `bg-muted/30` and `bg-slate-50`, not everything white
+   - **Active/selected states** — `bg-vu-blue-100` for selected items, `bg-orange-50` for warnings
 
 2. **Generous whitespace** — Cramped looks amateur:
    - Cards: minimum `p-6` (24px)
@@ -53,7 +57,7 @@ Build pages using these shared patterns **first**, fall back to primitives only 
 
 ```tsx
 <div className="flex h-screen">
-  <aside className="w-[280px] border-r bg-muted/30 p-6 flex flex-col gap-8">
+  <aside className="w-[280px] border-r bg-slate-50 p-6 flex flex-col gap-8">
     {/* Sidebar: nav, primary actions, stats */}
     <SectionHeader title="Step Label" size="compact" />
     <Button variant="primary" className="w-full">Action</Button>
@@ -83,14 +87,14 @@ Before submitting any UI work, verify:
 - [ ] Metrics use `StatCard`, not one-off KPI boxes
 - [ ] Metadata uses `KeyValueList`, not hand-built rows
 - [ ] Single primary button hierarchy respected
-- [ ] Brand colors semantic and restrained
+- [ ] Colors create visual depth without chaos — purposeful accents, not rainbow
 
 **If you check fewer than 7/10, the design system adoption is incomplete.**
 
 ## Anti-Patterns (Never Do These)
 
 - Creating local `SectionHeader`, `FormField`, `StatCard`, or `StatusPanel` wrappers
-- Using `bg-vu-blue-100`, `bg-vu-orange-50` as backgrounds
+- Flat white/gray everywhere — use subtle color tints for visual depth
 - Multiple primary buttons in one view
 - Large colored badges for status (use dots + text)
 - Heavy card shadows or decorative borders
