@@ -15,10 +15,27 @@ The VU Design System is organized around **recurring UI situations** observed ac
 3. **Package-first** — Everything consumable via `@vu/design-system`
 4. **Accessibility by default** — WCAG 2.2 AA compliance built-in
 5. **Composability** — Small primitives that compose into complex patterns
+6. **Showcase fidelity** — Downstream applications should feel like the showcase, not like generic apps with VU-colored buttons
 
 ## Design Philosophy (CRITICAL)
 
 The VU aesthetic is **academic clarity** — information-dense yet breathable, professional without being corporate, colorful only when communicating meaning.
+
+### Non-Negotiable Adoption Rule
+
+When applying this design system to another product, do **not** stop at primitive replacement.
+
+The target is **showcase-level adoption of the whole interface language**:
+
+- page framing must resemble the showcase
+- spacing rhythm must resemble the showcase
+- headers and sections must resemble the showcase
+- cards, status surfaces, summaries, and filter rows must resemble the showcase
+- button hierarchy, icon treatment, and status color usage must resemble the showcase
+
+If a page imports `Button`, `Card`, and `Input` but still looks generic or flat, the design-system adoption is **incomplete**.
+
+Agents should optimize for the **look and feel of the whole page**, not mere component presence.
 
 ### The Five Rules
 
@@ -74,6 +91,46 @@ The VU aesthetic is **academic clarity** — information-dense yet breathable, p
   </main>
 </div>
 ```
+
+### Showcase-First Composition Rule
+
+When redesigning or upgrading an application, follow this order:
+
+1. Start from the **showcase patterns**, not from local ad hoc markup.
+2. Use shared page-level compositions first:
+   - `PageHeader`
+   - `SectionHeader`
+   - `FormField`
+   - `LoadingState`
+   - `StatusPanel`
+   - `AIState`
+   - `StatCard`
+   - `FilterBar`
+   - `SearchInput`
+   - `ResultSummary`
+   - `EmptyState`
+   - `KeyValueList`
+3. Only fall back to primitives when the composition layer truly does not fit.
+4. If a page still needs a local wrapper, first ask whether the wrapper should become a reusable design-system pattern.
+
+The goal is not "use more components." The goal is **make the app feel like the showcase**.
+
+### Whole-Page Feel Checklist
+
+Before considering a downstream page aligned with the design system, verify:
+
+- `PageHeader` or an equivalent top-level system header is used
+- sections use system spacing and rhythm, not ad hoc margins
+- cards use system variants and padding
+- search/filter/action areas use `FilterBar` and `SearchInput` where appropriate
+- forms use `FormField` rather than bespoke label/helper/error wrappers
+- status/loading/review surfaces use `LoadingState`, `StatusPanel`, `AIState`, or `ResultSummary`
+- metrics use `StatCard` rather than one-off KPI boxes
+- metadata inspection uses `KeyValueList` rather than hand-built rows
+- buttons reflect a single-primary-action hierarchy
+- brand colors are semantic and restrained, never decorative
+
+If several of these are missing, the page is **not yet truly on the design system**.
 
 ### Color Usage Matrix
 
@@ -339,6 +396,8 @@ import { StatCard, StatusPanel, KeyValueList } from '@vu/design-system';
 4. **Use semantic colors** for status: success=green, warning=orange, error=red, info=blue
 5. **Icons communicate meaning** — use colored icons intentionally
 6. **Accessibility:** All interactive components have proper ARIA, focus rings, keyboard support
+7. **Adopt page patterns, not just parts** — replicate showcase composition and hierarchy
+8. **Avoid local mini-design-systems** — do not recreate `SectionHeader`, `FormField`, stat cards, hints, or status panels locally when the library already provides them
 
 ## File Locations
 
@@ -390,6 +449,8 @@ Then import and use any component.
 4. **Suggest variants** — use the variant system (buttonVariants, badgeVariants) for consistency
 5. **Icon guidance** — recommend semantic icon choices and colors
 6. **Composition patterns** — show how small primitives compose (FormField wraps Input, etc.)
+7. **Audit whole-page fidelity** — compare the page against the showcase and identify missing composition layers
+8. **Replace local wrappers first** — prioritize removing ad hoc section headers, metric cards, metadata rows, and status wrappers
 
 ## Quick Reference: Import Map
 

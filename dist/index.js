@@ -28,6 +28,7 @@ export { StatCard } from './components/StatCard.js';
 export { StatusPanel } from './components/StatusPanel.js';
 export { ResultSummary } from './components/ResultSummary.js';
 export { ActivityFeedItem } from './components/ActivityFeedItem.js';
+export { InfoHint } from './components/InfoHint.js';
 export { KeyValueList } from './components/KeyValueList.js';
 export { Table, TableHeader, TableBody, TableFooter, TableHead, TableRow, TableCell, TableCaption, useTableSort } from './components/Table.js';
 export { FilterBar } from './components/FilterBar.js';

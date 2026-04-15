@@ -12,10 +12,22 @@ This project defines reusable design tokens, icons, and component primitives for
 npm install
 ```
 
+Or start in one step:
+
+```bash
+./start.sh
+```
+
 ## Run the showcase
 
 ```bash
 npm run dev
+```
+
+Or use the project wrapper:
+
+```bash
+./start.sh
 ```
 
 ## Build the showcase
@@ -156,6 +168,7 @@ import {
   InlineEditable,
   DataVisualShell,
   Icons,
+  InfoHint,
 } from '@vu/design-system';
 ```
 
@@ -174,6 +187,23 @@ Global styles (import in your app entry):
 ```ts
 import '@vu/design-system/theme.css';
 ```
+
+## Reusable application patterns
+
+The design system is intentionally not domain-specific. Downstream products should compose their pages from shared patterns rather than recreating local mini-systems.
+
+- `PageHeader` — top-level page framing for task-oriented product views
+- `SectionHeader` — supports both standard section headers and compact uppercase utility headings
+- `FormField` — supports stacked and inline field layouts, descriptions, errors, and label-side actions
+- `LoadingState`, `StatusPanel`, `AIState` — shared async and operational status surfaces
+- `StatCard` — supports dashboard cards and compact summary cards with optional inline hints
+- `FilterBar` + `SearchInput` — search and filter composition for operational pages
+- `EmptyState` — reusable zero-data and no-selection fallback
+- `ResultSummary` — structured recommendation and review summary surface with tone variants
+- `KeyValueList` — metadata inspection and structured detail display in default or compact layouts
+- `InfoHint` — inline tooltip helper for small explanatory affordances
+
+For review panels, comparison cards, and metadata-heavy interfaces, prefer composing these shared pieces with `Card`, `Button`, `Icons`, `Table`, and `Separator` instead of creating domain-locked components.
 
 ## Architecture
 
@@ -202,7 +232,7 @@ The package is organized conceptually around recurring UI situations observed ac
   - `Tabs`, `Dialog` / `Modal`, `Sheet` / `Drawer`, `DropdownMenu`, `Pagination`, headers
 
 - `Data Display`
-  - `Card`, `StatCard`, `KeyValueList`, `Table`, `ResultSummary`, `DataVisualShell`
+  - `Card`, `StatCard`, `KeyValueList`, `Table`, `ResultSummary`, `DataVisualShell`, metadata and inspection layouts
 
 - `Workflow`
   - `Timeline`, `WorkflowAuditTimeline`, `ProgressDots`, `Stepper`, `StatusPanel`

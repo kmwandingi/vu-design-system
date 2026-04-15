@@ -4,7 +4,9 @@ type FormFieldProps = HTMLAttributes<HTMLDivElement> & {
     description?: ReactNode;
     error?: ReactNode;
     required?: boolean;
+    labelSuffix?: ReactNode;
+    orientation?: 'stacked' | 'inline';
 };
-export declare function FormField({ className, label, description, error, required, children, ...props }: FormFieldProps): import("react/jsx-runtime").JSX.Element;
+export declare function FormField({ className, label, description, error, required, labelSuffix, orientation, children, ...props }: FormFieldProps): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=FormField.d.ts.map

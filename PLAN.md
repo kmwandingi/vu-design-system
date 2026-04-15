@@ -9,6 +9,7 @@
 - [x] Expand the showcase so the package surface is visible by taxonomy, not just tokens
 - [x] Reorganize the showcase so all existing and new surfaces are grouped under taxonomy-first tabs
 - [ ] Add a dedicated library build and publishing workflow when package distribution is needed
+- [x] Add a root `start.sh` wrapper for launching the showcase with a single command
 
 # File Index
 
@@ -26,6 +27,7 @@
 - `src/components/LoadingState.tsx` — reusable composed loading card for richer busy-state messaging
 - `src/components/Timeline.tsx` — reusable steps/timeline primitive for process and journey visualization
 - `src/components/FormField.tsx` — reusable field composition wrapper for labels, helper text, and validation messaging
+- `src/components/InfoHint.tsx` — reusable inline tooltip helper for compact explanatory affordances and metric hints
 - `src/components/EmptyState.tsx` — reusable empty-state pattern with icon, description, and actions
 - `src/components/PageHeader.tsx` — reusable page-level heading and action pattern
 - `src/components/SectionHeader.tsx` — reusable section framing pattern with optional actions
@@ -58,11 +60,14 @@
 - `tailwind.config.js` — showcase Tailwind configuration
 - `tailwind.preset.js` — reusable Tailwind preset for other projects
 - `package.json` — project metadata and scripts for showcase/package preparation
+- `start.sh` — shell wrapper that installs dependencies if needed and starts the Vite showcase server
 - `README.md` — top-level usage and architecture overview
 - `Guidelines.md` — legacy design guidance reference pending consolidation into README/PLAN
 
 # Changelog
 
+- 2026-04-12: Expanded the reusable application-pattern surface so downstream apps can replace local mini-systems with shared page framing, compact headers, richer form fields, compact stat cards, metadata layouts, and inline hints. Files: `src/components/SectionHeader.tsx`, `src/components/FormField.tsx`, `src/components/StatCard.tsx`, `src/components/ResultSummary.tsx`, `src/components/KeyValueList.tsx`, `src/components/InfoHint.tsx`, `src/index.ts`, `README.md`, `PLAN.md`.
+- 2026-04-12: Added a root `start.sh` entrypoint so the showcase can be launched with one command and documented the workflow. Files: `start.sh`, `README.md`, `PLAN.md`.
 - 2026-03-25: Expanded icon library coverage and normalized icon tile widths to improve showcase balance and horizontal rhythm. Files: `src/app/App.tsx`, `src/styles/icons.ts`.
 - 2026-03-25: Improved layout rails, short-section pairing, and alert rendering for a cleaner, more production-like showcase. Files: `src/app/App.tsx`, `src/styles/components.ts`, `tailwind.config.js`.
 - 2026-03-25: Added reusable component primitives and a package entrypoint to prepare the design system for cross-project consumption. Files: `src/components/Button.tsx`, `src/components/Badge.tsx`, `src/components/Card.tsx`, `src/components/Alert.tsx`, `src/components/Input.tsx`, `src/index.ts`.

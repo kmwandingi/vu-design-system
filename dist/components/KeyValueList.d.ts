@@ -5,7 +5,9 @@ type KeyValueItem = {
 };
 type KeyValueListProps = HTMLAttributes<HTMLDListElement> & {
     items: KeyValueItem[];
+    size?: 'default' | 'compact';
+    keyWidthClassName?: string;
 };
-export declare function KeyValueList({ className, items, ...props }: KeyValueListProps): import("react/jsx-runtime").JSX.Element;
+export declare function KeyValueList({ className, items, size, keyWidthClassName, ...props }: KeyValueListProps): import("react/jsx-runtime").JSX.Element;
 export {};
 //# sourceMappingURL=KeyValueList.d.ts.map

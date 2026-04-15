@@ -13,10 +13,25 @@ type StatusPanelProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export function StatusPanel({ className, title, description, progress, variant = 'info', icon, meta, ...props }: StatusPanelProps) {
+  const progressVariant =
+    variant === 'primary'
+      ? 'primary'
+      : variant === 'success'
+        ? 'success'
+        : variant === 'warning'
+          ? 'warning'
+          : variant === 'error'
+            ? 'error'
+            : 'info';
+
   return (
-    <Alert className={cn('space-y-4', className)} variant={variant} icon={icon} title={title} description={description} {...props}>
-      {typeof progress === 'number' ? <Progress value={progress} variant={variant === 'primary' ? 'primary' : variant === 'success' ? 'success' : variant === 'warning' ? 'warning' : variant === 'error' ? 'error' : 'info'} /> : null}
-      {meta ? <div className="text-xs text-muted-foreground">{meta}</div> : null}
+    <Alert className={cn(className)} variant={variant} icon={icon} title={title} description={description} {...props}>
+      {(typeof progress === 'number' || meta) ? (
+        <div className="mt-4 space-y-2.5">
+          {typeof progress === 'number' ? <Progress value={progress} variant={progressVariant} size="md" /> : null}
+          {meta ? <div className="text-xs leading-none text-muted-foreground">{meta}</div> : null}
+        </div>
+      ) : null}
     </Alert>
   );
 }
