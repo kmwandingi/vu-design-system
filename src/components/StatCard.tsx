@@ -2,6 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/Card';
 import { InfoHint } from '@/components/InfoHint';
+import type { CardStyles } from '@/styles/components';
 
 type StatCardProps = HTMLAttributes<HTMLDivElement> & {
   label: ReactNode;
@@ -11,11 +12,11 @@ type StatCardProps = HTMLAttributes<HTMLDivElement> & {
   icon?: ReactNode;
   hint?: ReactNode;
   size?: 'default' | 'compact';
-};
+} & Pick<CardStyles, 'tone' | 'accent'>;
 
-export function StatCard({ className, label, value, trend, meta, icon, hint, size = 'default', ...props }: StatCardProps) {
+export function StatCard({ className, label, value, trend, meta, icon, hint, size = 'default', tone, accent, ...props }: StatCardProps) {
   return (
-    <Card className={cn(size === 'compact' ? 'min-h-0' : 'min-h-[148px]', className)} variant="elevated" padding={size === 'compact' ? 'md' : 'lg'} {...props}>
+    <Card className={cn(size === 'compact' ? 'min-h-0' : 'min-h-[148px]', className)} variant="elevated" tone={tone} accent={accent} padding={size === 'compact' ? 'md' : 'lg'} {...props}>
       <div className="flex items-start justify-between gap-4">
         <div className={cn(size === 'compact' ? 'space-y-2' : 'space-y-3')}>
           <div className="flex items-center gap-1.5">

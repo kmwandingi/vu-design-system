@@ -13,8 +13,17 @@ type ResultSummaryProps = HTMLAttributes<HTMLDivElement> & {
 };
 
 export function ResultSummary({ className, title, eyebrow, summary, highlights, actions, meta, tone = 'default', ...props }: ResultSummaryProps) {
+  const cardTone =
+    tone === 'info'
+      ? 'primary'
+      : tone === 'success'
+        ? 'tertiary'
+        : tone === 'warning'
+          ? 'accent'
+          : 'default';
+
   return (
-    <Card className={cn('space-y-4', tone === 'info' && 'border-vu-blue/20 bg-vu-blue-50/40', tone === 'success' && 'border-vu-green/20 bg-vu-green-50/40', tone === 'warning' && 'border-vu-orange/20 bg-vu-orange-50/40', className)} variant="elevated" padding="lg" {...props}>
+    <Card className={cn('space-y-4', className)} variant="elevated" tone={cardTone} accent={tone === 'default' ? 'none' : 'left'} padding="lg" {...props}>
       <div className="space-y-2">
         {eyebrow ? <p className="text-sm font-medium text-vu-blue">{eyebrow}</p> : null}
         <h3 className="text-lg font-semibold">{title}</h3>

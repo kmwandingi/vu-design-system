@@ -45,7 +45,7 @@ Agents should optimize for the **look and feel of the whole page**, not mere com
    - Data visualization
    - **Visual hierarchy through color shades** — lighter tints for subtle, deeper tones for emphasis
    - **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
-   - **Card highlights** — left-border accents (`border-l-2 border-vu-blue-500`), subtle background tints (`bg-vu-blue-50/50`)
+   - **Card highlights** — use the `Card` API intentionally: `tone="primary|secondary|accent|tertiary"` with `accent="left|top"` for semantic emphasis
    - **Section differentiation** — alternating `bg-muted/30` and `bg-slate-50`, not everything white
    - **Active/selected states** — `bg-vu-blue-100` for selected items, `bg-orange-50` for warnings
 
@@ -190,7 +190,7 @@ The goal is not "use more components." The goal is **make the app feel like the 
 #### Design Rules
 - [ ] **Color depth** — Not flat white/gray; uses `bg-vu-blue-50`, `bg-slate-50`, `bg-muted/30` for visual hierarchy
 - [ ] **Sidebar accents** — `bg-vu-blue-50` or `bg-slate-50` instead of flat white
-- [ ] **Card highlights** — Left borders or subtle tints for featured cards
+- [ ] **Card highlights** — Use `Card` `tone` + `accent` intentionally for featured cards, summaries, or metric surfaces
 - [ ] **Section differentiation** — Alternating backgrounds, not everything white
 - [ ] **Whitespace luxury** — `p-6` on cards, `space-y-6` sections, `p-8` page padding
 - [ ] **Single primary action** — Only ONE `variant="primary"` button per view
@@ -342,7 +342,7 @@ import vuPreset from '@vu/design-system/tailwind.preset';
 |-----------|----------|-----------|---------------|
 | `Button` | primary, secondary, accent, tertiary, outline, ghost, subtle | `variant`, `size`, `disabled`, `href`, `asChild` | Focus ring, keyboard |
 | `Badge` | primary, secondary, accent, success, warning, error, info, outline | `variant` | - |
-| `Card` | default, elevated, interactive | `padding`, `variant` | - |
+| `Card` | default, elevated, interactive | `padding`, `variant`, `tone`, `accent` | - |
 | `Alert` | semantic styling via className | `variant` (manual) | ARIA roles |
 | `Input` | standard, valid, error states | - | Focus ring |
 | `Checkbox` | checked, unchecked, indeterminate | `checked`, `onCheckedChange`, `disabled` | ARIA checkbox |

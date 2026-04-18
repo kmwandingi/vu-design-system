@@ -22,6 +22,8 @@ export declare const badgeVariants: (props?: ({
 export type BadgeVariants = VariantProps<typeof badgeVariants>;
 export declare const cardStyles: (props?: ({
     variant?: "default" | "elevated" | "flat" | "outlined" | "interactive" | null | undefined;
+    tone?: "primary" | "secondary" | "accent" | "tertiary" | "default" | null | undefined;
+    accent?: "none" | "top" | "left" | null | undefined;
     padding?: "sm" | "md" | "lg" | "xl" | "none" | null | undefined;
 } & import("class-variance-authority/types").ClassProp) | undefined) => string;
 export type CardStyles = VariantProps<typeof cardStyles>;

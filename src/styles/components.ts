@@ -165,6 +165,18 @@ export const cardStyles = cva(
         outlined: 'shadow-none border-2',
         interactive: 'cursor-pointer hover:border-primary/50 hover:shadow-md transition-all duration-200',
       },
+      tone: {
+        default: '',
+        primary: 'border-vu-blue/20',
+        secondary: 'border-vu-purple/20',
+        accent: 'border-vu-orange/20',
+        tertiary: 'border-vu-green/20',
+      },
+      accent: {
+        none: '',
+        top: '',
+        left: '',
+      },
       padding: {
         none: '',
         sm: 'p-3',
@@ -173,8 +185,20 @@ export const cardStyles = cva(
         xl: 'p-8',
       },
     },
+    compoundVariants: [
+      { tone: 'primary', accent: 'top', className: 'border-t-2' },
+      { tone: 'secondary', accent: 'top', className: 'border-t-2' },
+      { tone: 'accent', accent: 'top', className: 'border-t-2' },
+      { tone: 'tertiary', accent: 'top', className: 'border-t-2' },
+      { tone: 'primary', accent: 'left', className: 'border-l-4' },
+      { tone: 'secondary', accent: 'left', className: 'border-l-4' },
+      { tone: 'accent', accent: 'left', className: 'border-l-4' },
+      { tone: 'tertiary', accent: 'left', className: 'border-l-4' },
+    ],
     defaultVariants: {
       variant: 'default',
+      tone: 'default',
+      accent: 'none',
       padding: 'md',
     },
   }

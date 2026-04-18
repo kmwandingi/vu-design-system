@@ -24,7 +24,7 @@ export function AIState({ className, title, description, status, progress, ...pr
             </div>
             {description ? <p className="text-sm text-vu-purple-800/80">{description}</p> : null}
           </div>
-          {typeof progress === 'number' ? <Progress value={progress} variant="secondary" /> : null}
+          {typeof progress === 'number' ? <Progress value={progress} variant="primary" indicatorClassName="bg-vu-purple" /> : null}
         </div>
       </div>
     </Card>

@@ -91,6 +91,14 @@ Only primary brand colors are suitable as background colors for white text accor
 - Hover state with border highlight
 - Use for: Clickable cards, selection items
 
+**Card Tone and Accent**
+- Purpose: Add restrained semantic emphasis without heavy fills or decorative styling
+- Props: `tone="default|primary|secondary|accent|tertiary"` and `accent="none|top|left"`
+- Use `accent="left"` for featured decisions, summaries, review surfaces, and reference panels
+- Use `accent="top"` for metrics, compact summaries, and scan-first dashboard cards
+- Keep the card body neutral; the accent line is the emphasis
+- Do not stack many different accent colors together unless the meanings are explicit
+
 ### Badges
 
 **Status Badges**
@@ -249,15 +257,15 @@ import { badgeVariants } from '@/styles/components';
 </span>
 ```
 
-### Card with Subtle Tint (NOT Gradients)
+### Card with Subtle Accent (Preferred)
 ```tsx
-// ✅ DO: Subtle color tint for visual depth
-<Card className="border-l-2 border-vu-blue-500 bg-vu-blue-50/50">
+// ✅ DO: Use the Card API for restrained semantic emphasis
+<Card tone="primary" accent="left">
   <CardHeader>Featured Content</CardHeader>
   <CardContent>...</CardContent>
 </Card>
 
-// ❌ DON'T: Use gradients
+// ❌ DON'T: Use ad hoc gradients or decorative color logic
 <Card className="bg-gradient-to-r from-purple-500 to-pink-500">
   Content
 </Card>

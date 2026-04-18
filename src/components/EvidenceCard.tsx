@@ -2,17 +2,18 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { Link2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/Card';
+import type { CardStyles } from '@/styles/components';
 
 type EvidenceCardProps = HTMLAttributes<HTMLDivElement> & {
   title: ReactNode;
   source?: ReactNode;
   summary?: ReactNode;
   relevance?: ReactNode;
-};
+} & Pick<CardStyles, 'tone' | 'accent'>;
 
-export function EvidenceCard({ className, title, source, summary, relevance, ...props }: EvidenceCardProps) {
+export function EvidenceCard({ className, title, source, summary, relevance, tone, accent, ...props }: EvidenceCardProps) {
   return (
-    <Card className={cn('space-y-3', className)} variant="default" padding="md" {...props}>
+    <Card className={cn('space-y-3', className)} variant="default" tone={tone} accent={accent} padding="md" {...props}>
       <div className="flex items-start gap-3">
         <div className="rounded-lg bg-muted p-2 text-muted-foreground"><Link2 className="h-4 w-4" /></div>
         <div className="space-y-1">

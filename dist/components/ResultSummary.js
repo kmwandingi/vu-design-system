@@ -2,6 +2,13 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { cn } from '../lib/utils.js';
 import { Card } from '../components/Card.js';
 export function ResultSummary({ className, title, eyebrow, summary, highlights, actions, meta, tone = 'default', ...props }) {
-    return (_jsxs(Card, { className: cn('space-y-4', tone === 'info' && 'border-vu-blue/20 bg-vu-blue-50/40', tone === 'success' && 'border-vu-green/20 bg-vu-green-50/40', tone === 'warning' && 'border-vu-orange/20 bg-vu-orange-50/40', className), variant: "elevated", padding: "lg", ...props, children: [_jsxs("div", { className: "space-y-2", children: [eyebrow ? _jsx("p", { className: "text-sm font-medium text-vu-blue", children: eyebrow }) : null, _jsx("h3", { className: "text-lg font-semibold", children: title }), _jsx("p", { className: "text-sm text-muted-foreground", children: summary })] }), highlights ? _jsx("div", { className: "rounded-lg bg-muted/60 p-4 text-sm", children: highlights }) : null, actions ? _jsx("div", { className: "flex flex-wrap gap-3", children: actions }) : null, meta ? _jsx("p", { className: "text-xs text-muted-foreground", children: meta }) : null] }));
+    const cardTone = tone === 'info'
+        ? 'primary'
+        : tone === 'success'
+            ? 'tertiary'
+            : tone === 'warning'
+                ? 'accent'
+                : 'default';
+    return (_jsxs(Card, { className: cn('space-y-4', className), variant: "elevated", tone: cardTone, accent: tone === 'default' ? 'none' : 'left', padding: "lg", ...props, children: [_jsxs("div", { className: "space-y-2", children: [eyebrow ? _jsx("p", { className: "text-sm font-medium text-vu-blue", children: eyebrow }) : null, _jsx("h3", { className: "text-lg font-semibold", children: title }), _jsx("p", { className: "text-sm text-muted-foreground", children: summary })] }), highlights ? _jsx("div", { className: "rounded-lg bg-muted/60 p-4 text-sm", children: highlights }) : null, actions ? _jsx("div", { className: "flex flex-wrap gap-3", children: actions }) : null, meta ? _jsx("p", { className: "text-xs text-muted-foreground", children: meta }) : null] }));
 }
 //# sourceMappingURL=ResultSummary.js.map
