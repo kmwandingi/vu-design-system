@@ -12,7 +12,7 @@ type StatCardProps = HTMLAttributes<HTMLDivElement> & {
   icon?: ReactNode;
   hint?: ReactNode;
   size?: 'default' | 'compact';
-} & Pick<CardStyles, 'tone' | 'accent'>;
+} & Partial<Pick<CardStyles, 'tone' | 'accent'>>;
 
 export function StatCard({ className, label, value, trend, meta, icon, hint, size = 'default', tone, accent, ...props }: StatCardProps) {
   return (

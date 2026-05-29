@@ -103,6 +103,10 @@ const requiredExports = [
   'CommandPalette',
   'ActivityFeedItem',
 
+  // Presentations
+  'Presentation',
+  'Slide',
+
   // Layout & Headers
   'PageHeader',
   'SectionHeader',
