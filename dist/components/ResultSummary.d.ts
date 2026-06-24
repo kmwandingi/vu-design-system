@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-type ResultSummaryProps = HTMLAttributes<HTMLDivElement> & {
+type ResultSummaryProps = Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
     title: ReactNode;
     eyebrow?: ReactNode;
     summary: ReactNode;

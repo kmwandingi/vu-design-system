@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/Card';
 
-type ResultSummaryProps = HTMLAttributes<HTMLDivElement> & {
+type ResultSummaryProps = Omit<HTMLAttributes<HTMLDivElement>, 'title'> & {
   title: ReactNode;
   eyebrow?: ReactNode;
   summary: ReactNode;
